@@ -1,8 +1,14 @@
 .date-add{
-    top: 12px;
+    bottom: 0px;
+    top: inherit;
+    right: 0px;
 }
 
 #main-menu .navbar-header {   
     background: #337ab7;
     color: #fff;  
+}
+
+.img-responsive.real-estate{
+    max-height: 300px;
 }

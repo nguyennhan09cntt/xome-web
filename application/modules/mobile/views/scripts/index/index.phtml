@@ -24,26 +24,18 @@
                                 <a href="/<?php echo $this->productCategoryIdentify($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/'.$this->districtIdentify($product[DbTable_Product::COL_FK_DISTRICT]).'/' . $product[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($product[DbTable_Product::COL_PRODUCT_ID]); ?>" style="border: 1px solid #ddd;">
                                     <img class="img-responsive real-estate" alt="xome" src="<?php echo $this->showImageUrl($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]);?>"/>
                                 </a>
-                                <!--<div class="quick-view">
-                                    <a title="Bản đồ" class="search" href="#"></a>
-                                </div>-->
-                                <div class="product-price">
-                                    <?php echo  $product[DbTable_Product::COL_PRODUCT_PAID_PRICE] > 0 ? number_format($product[DbTable_Product::COL_PRODUCT_PAID_PRICE]).' VND' : 'Thỏa thuận' ?>
 
+                                <div class="product-price">
+                                    <?php echo  $product[DbTable_Product::COL_PRODUCT_PAID_PRICE] > 500 ? number_format($product[DbTable_Product::COL_PRODUCT_PAID_PRICE]).' VND' : 'Thỏa thuận' ?>
+
+                                </div>
+                                <div class="date-add">
+                                    <?php echo $this->formatTime($product[DbTable_Product::COL_PRODUCT_CREATED_AT]); ?>
                                 </div>
                             </div>
                             <div class="right-block">
                                 <h5 class="product-name"><a href="/<?php echo $this->productCategoryIdentify($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/'.$this->districtIdentify($product[DbTable_Product::COL_FK_DISTRICT]).'/' . $product[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($product[DbTable_Product::COL_PRODUCT_ID]); ?>"><?php echo $product[DbTable_Product::COL_PRODUCT_NAME]?></a></h5>
-                                <!--<div class="product-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>-->
-                                <div class="content_price">
-                                    <span class="price product-date"><?php echo $this->formatTime($product[DbTable_Product::COL_PRODUCT_CREATED_AT]);?></span>
-                                </div>
+
                                 <div class="info-orther">
                                     <!--<p>Mã tin: #<?php /*echo $this->productEncode($product[DbTable_Product::COL_PRODUCT_ID]);*/?></p>-->
                                     <p class="availability">Địa chỉ: <span><?php echo $product[DbTable_Product::COL_PRODUCT_ADDRESS]?></span></p>
