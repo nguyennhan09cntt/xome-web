@@ -6,5 +6,153 @@
   background: transparent;
 }
 .bx-viewport{
-	height: 400px!important;
+	/*height: 400px!important;*/
+}
+h2.post_title {
+    font-size: 26px;
+    padding: 0 0 20px 0;
+    line-height: 28px;
+}
+
+.mobile_user_action {
+    float: right;
+    width: 100%;
+    height: 54px;
+    display: table;
+}
+.mobile_user_action .wpfp-span {
+    text-align: center;
+    width: 20%;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+.navbar .link_quan_ly_tin ,
+.navbar .link_dang_tin {
+    line-height: inherit;
+    /* float: left; */
+    padding-top: 2px;
+    color: #fff;
+}
+
+.navbar .link {
+    background: #044a84;
+}
+.navbar .active {
+    background: #E74C3C;
+}
+.navbar .link {
+    text-align: center;
+    width: 20%;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 0;
+}
+.navbar .link span {
+    font-size: 11px;
+    display: block;
+}
+.navbar .link i {
+    margin-bottom: 0px;
+    font-size: 16px;
+    display: block;
+}
+.page-content{
+    margin-top: 0px;
+}
+
+
+
+#res-summary-point {
+    overflow: hidden;
+    margin-top: 5px;
+    clear: both;
+    border: 1px solid #f8f8f8;
+}
+
+.microsite-top-points-block {
+    float: left;
+    margin-right: 14px;
+    width: 23%;
+    display: block;
+    text-align: center
+}
+
+.microsite-top-points-label {
+    font-size: 11px;
+    text-shadow: 0 1px 1px #fff;
+    color: #555;
+    white-space: nowrap
+}
+
+.microsite-top-points {
+    float: left;
+    margin-right: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 12px 0 10px 5px;
+    color: #e52402;
+    text-shadow: 0 1px 1px #FFF;
+    text-align: center;
+    width: 23%;
+}
+
+.microsite-top-points .label {
+    font-weight: 400;
+    color: #777;
+    font-size: 12px;
+    padding-top: 3px
+}
+
+.microsite-top-points a {
+    color: #02AAD4
+}
+
+.microsite-top-points .text-highlight {
+    color: #03ae03
+}
+
+.micro-home-recent-review .review-point a.text-highlight {
+    background-color: #03ae03
+}
+
+.updating-status {
+    background: url(../images/icons/verified-icon.png) no-repeat 0 -33px;
+    width: 93px!important;
+    height: 25px
+}
+
+
+
+.microsite-points-summary {
+    position: relative;
+    border: 1px solid #f8f8f8;
+    border-left: 0;
+    border-right: 0;
+    padding: 0 10px;
+    overflow: hidden;
+    clear: both
+}
+
+.avg-txt-highlight {
+    color: #03ae03!important
+}
+
+.avg-txt-highlight.error{
+    color: red!important;
+}
+
+
+
+.disableSection{
+    border: 1px solid #f8f8f8;
+    padding: 0px 5px;
+    margin-top: 5px;
+}
+.res-common-add, .res-common-minmaxprice{
+    margin: 0px 5px;
 }
