@@ -475,7 +475,8 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_FK_CONFIG_STATUS,
                     DbTable_Product::COL_PRODUCT_REFER_LINK,
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
-                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE
+                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
+                    DbTable_Product::COL_PRODUCT_PAID_PRICE
 
                 )
             )

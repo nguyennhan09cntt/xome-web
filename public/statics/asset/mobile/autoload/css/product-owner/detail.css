@@ -1,0 +1,19 @@
+
+h2{
+    padding: 5px 0px;
+}
+
+.thumb-info-title .thumb-info-inner {
+    font-weight: 700;
+
+}
+.thumb-info-wrapper{
+    position: relative;
+
+}
+.item-description span{
+    width: 100%;
+}
+.portfolio-list li{
+    margin-top: 15px;
+}
