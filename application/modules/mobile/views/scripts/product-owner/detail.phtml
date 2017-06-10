@@ -126,10 +126,10 @@
     </div>
 </div>
 <div style="height: 60px;">
-    <nav class="navbar" style="position: fixed; bottom: 0px">
+    <nav class="navbar" style="position: fixed; bottom: 0px;width: 100%;">
         <div class="mobile_user_action">
-            <a class="link link_quan_ly_tin btn_nav_menu" href="#" title="Danh mục"><i
-                    class="fa fa-bars"></i><span>Quay ve</span></a>
+            <a class="link link_quan_ly_tin btn_nav_menu" href="<?php echo isset($this->backUrl) ? base64_decode($this->backUrl) : '/'; ?>" title="Danh mục"><i
+                    class="fa fa-undo"></i><span>Quay ve</span></a>
             <a class="link link_quan_ly_tin btn_nav_search active" href="#"
                title=""><i
                     class="fa fa-user"></i><span>Người đăng</span></a>
