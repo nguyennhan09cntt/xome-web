@@ -66,7 +66,7 @@ class Mobile_CustomerController extends Application_Controller_FrontEnd_Default
         $helper = $fb->getRedirectLoginHelper();
 
         $permissions = ['email', 'user_likes','user_birthday']; // optional
-        $loginUrl = $helper->getLoginUrl('http://xome.vn/customer/fb-callback', $permissions);
+        $loginUrl = $helper->getLoginUrl('http://m.xome.vn/customer/fb-callback', $permissions);
         $this->view->assign('pBackUrl', $pBackUrl);
         $this->view->assign('loginUrl', $loginUrl);
     }
