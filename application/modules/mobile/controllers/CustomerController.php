@@ -56,6 +56,7 @@ class Mobile_CustomerController extends Application_Controller_FrontEnd_Default
     {
         $pBackUrl = $this->getRequest()->getParam('u');
         #$pBackUrl = $pBackUrl ? base64_decode($pBackUrl) : '';
+
         $fb = new Facebook([
             'app_id' => '1428898624081256', // Replace {app-id} with your app id
             'app_secret' => '4b4867ee98462e2de15e65f51ee57c09',
@@ -65,7 +66,7 @@ class Mobile_CustomerController extends Application_Controller_FrontEnd_Default
         $helper = $fb->getRedirectLoginHelper();
 
         $permissions = ['email', 'user_likes','user_birthday']; // optional
-        $loginUrl = $helper->getLoginUrl('http://m.xome.vn/customer/fb-callback', $permissions);
+        $loginUrl = $helper->getLoginUrl('http://xome.vn/customer/fb-callback', $permissions);
         $this->view->assign('pBackUrl', $pBackUrl);
         $this->view->assign('loginUrl', $loginUrl);
     }
