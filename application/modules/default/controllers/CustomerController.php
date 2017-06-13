@@ -370,20 +370,25 @@ class CustomerController extends Application_Controller_FrontEnd_Default
 
     public function fbCallbackAction()
     {
-        $fb = new Facebook([
+       /* $fb = new Facebook([
             'app_id' => '835308879856695', // Replace {app-id} with your app id
             'app_secret' => 'b02505d45ad717f89ea999e3b23c9517',
             'default_graph_version' => 'v2.3',
         ]);
 
-        if ($_SERVER['HTTP_HOST'] == 'xome.vn') {
+        if ($_SERVER['HTTP_HOST'] == 'xome.vn' || $_SERVER['HTTP_HOST'] == 'm.xome.vn') {
             $fb = new Facebook([
                 'app_id' => '1428898624081256', // Replace {app-id} with your app id
                 'app_secret' => '4b4867ee98462e2de15e65f51ee57c09',
                 'default_graph_version' => 'v2.3',
             ]);
 
-        }
+        }*/
+        $fb = new Facebook([
+            'app_id' => '1428898624081256', // Replace {app-id} with your app id
+            'app_secret' => '4b4867ee98462e2de15e65f51ee57c09',
+            'default_graph_version' => 'v2.3',
+        ]);
 
         $helper = $fb->getRedirectLoginHelper();
         try {
