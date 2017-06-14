@@ -296,7 +296,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
         $productOwn = $productOwn ? $productOwn->toArray() : null;
         $productOwnId = null;
         if (!$productOwn) {
-            $productOwnId = Model_ProductOwner::getInstance()->insert($name, $phone, null, null, 0);
+            $productOwnId = Model_ProductOwner::getInstance()->insert($own, $phone, null, null, 0);
         } else {
             $productOwnId = $productOwn[DbTable_Product_Own::COL_PRODUCT_OWN_ID];
         }
