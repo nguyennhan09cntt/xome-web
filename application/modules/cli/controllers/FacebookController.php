@@ -79,7 +79,12 @@ class Cli_FacebookController extends Application_Controller_Cli
         if ($imageFile) {
             try {
                 file_put_contents($imagePath, $imageFile);
+
                 $image = str_replace($this->getUploadPath(), '', $imagePath);
+                $position = strpos($imagePath, '.');
+                # scale 440 x 275
+                $image440x275 = substr_replace($imagePath, '_440x275', $position, 0);
+                Application_Function_Image::crop($imagePath, $image440x275, 440, 275);
 
             } catch (Exception $ex) {
                 $image = null;

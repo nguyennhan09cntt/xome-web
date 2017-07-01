@@ -122,7 +122,6 @@ class ProductController extends Application_Controller_FrontEnd_Default
                 $url = $product[DbTable_Product::COL_PRODUCT_THUMB_NAIL];
             }
             $this->setMetaImage($url);
-
         } else {
             $this->goto404();
         }
@@ -286,12 +285,17 @@ class ProductController extends Application_Controller_FrontEnd_Default
         $imageArr = null;
         if (isset($_FILES[$elementName]) && $_FILES[$elementName]['name']) {
 
-            $imageArr = $this->uploadMultiImage('product-image', $elementName);
+            $imageArr = $this->uploadMultiImage('product-image', $elementName, true);
         }
         $descriptionNoTag = strip_tags($description);
-        $pos = strpos($descriptionNoTag, ' ', 100);
-        if ($pos > 0)
-            $shortDescription = substr($description ['description'], 0, $pos);
+        if (strlen($descriptionNoTag) > 100 ){
+
+            $pos = strpos($descriptionNoTag, ' ', 100);
+            if ($pos > 0)
+                $shortDescription = substr($description ['description'], 0, $pos);
+        }else{
+            $shortDescription = $descriptionNoTag;
+        }
         $productOwn = Model_ProductOwner::getInstance()->getByPhone($phone);
         $productOwn = $productOwn ? $productOwn->toArray() : null;
         $productOwnId = null;
@@ -303,7 +307,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
         $cookie = null;
         if (!$customerId) {
             $cookie = $this->getCookie(Application_Constant_Global::COOKIE_CUSTOMER_ANONYMOUS);
-            if(!$cookie){
+            if (!$cookie) {
                 $time = time();
                 $random = Application_Function_String::randomString(9);
                 $cookie = md5($time . $random);
@@ -313,7 +317,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
                 );
             }
         }
-        $id = Admin_Model_Product::getInstance()->insert($name, $referCode, $categoryId, $originalPrice, $paidPrice, $image, $description, $component, $note, $shortDescription, $promotionPrice, $address, $area, $own, $phone, $object, $district, $customerId, 0, 0, 1, $productOwnId, $cookie);
+        $id = Model_Product::getInstance()->insert($name, $referCode, $categoryId, $originalPrice, $paidPrice, $image, $description, $component, $note, $shortDescription, $promotionPrice, $address, $area, $own, $phone, $object, $district, $customerId, 0, 0, 1, $productOwnId, $cookie);
 
         if (intval($id)) {
             if ($facilityArrId) {
@@ -329,7 +333,8 @@ class ProductController extends Application_Controller_FrontEnd_Default
             }
         }
         if ($customerId) {
-            $this->gotoUrl('/nguoi-cho-thue/dang-tin-thanh-cong/');
+            $this->gotoUrl('/tai-khoan/danh-sach-tin-nha-tro.html');
+            // $this->gotoUrl('/nguoi-cho-thue/dang-tin-thanh-cong/');
         } else {
             $this->gotoUrl('/dang-tin-thanh-cong/');
         }

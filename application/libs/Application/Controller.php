@@ -137,7 +137,7 @@ class Application_Controller extends Zend_Controller_Action
      * @param string $elementName
      * @return mixed|null
      */
-    protected function uploadImage($component, $elementName)
+    protected function uploadImage($component, $elementName, $cropFlag = false)
     {
         $image = null;
         if (isset($_FILES[$elementName]) && $_FILES[$elementName]['name']) {
@@ -162,6 +162,12 @@ class Application_Controller extends Zend_Controller_Action
             $imagePath = sprintf('%s/%s', $folder, $this->_helper->generateImageName($file['name']));
             if (move_uploaded_file($file['tmp_name'], $imagePath)) {
                 $image = str_replace($this->getUploadPath(), '', $imagePath);
+                $position = strpos($imagePath, '.');
+                if ($cropFlag) {
+                    # scale 440 x 275
+                    $image440x275 = substr_replace($imagePath, '_440x275', $position, 0);
+                    Application_Function_Image::crop($imagePath, $image440x275, 440, 275);
+                }
             }
 
         }
@@ -172,9 +178,10 @@ class Application_Controller extends Zend_Controller_Action
      * Upload multi image
      * @param string $component
      * @param string $elementName
+     * @param bool $cropFlag
      * @return array
      */
-    public function uploadMultiImage($component, $elementName)
+    public function uploadMultiImage($component, $elementName, $cropFlag = false)
     {
         $image = array();
         if (isset($_FILES[$elementName]) && $_FILES[$elementName]['name']) {
@@ -200,6 +207,12 @@ class Application_Controller extends Zend_Controller_Action
                 $imagePath = sprintf('%s/%s', $folder, $this->_helper->generateImageName($element));
                 if (move_uploaded_file($file['tmp_name'][$index], $imagePath)) {
                     $image[] = str_replace($this->getUploadPath(), '', $imagePath);
+                    $position = strpos($imagePath, '.');
+                    if ($cropFlag) {
+                        # scale 440 x 275
+                        $image440x275 = substr_replace($imagePath, '_440x275', $position, 0);
+                        Application_Function_Image::crop($imagePath, $image440x275, 440, 275);
+                    }
                 }
             }
 

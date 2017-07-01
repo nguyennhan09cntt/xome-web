@@ -43,7 +43,8 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_FK_DISTRICT,
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
                     DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
-                    DbTable_Product::COL_PRODUCT_PAGEVIEW
+                    DbTable_Product::COL_PRODUCT_PAGEVIEW,
+                    DbTable_Product::COL_PRODUCT_FLAG_CROP,
                 )
             )
             ->joinLeft(
@@ -131,6 +132,7 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_PRODUCT_OWN,
                     DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
                     DbTable_Product::COL_PRODUCT_PAGEVIEW,
+                    DbTable_Product::COL_PRODUCT_FLAG_CROP,
                     'product_facility' => new Zend_Db_Expr(
                         sprintf(
                             'GROUP_CONCAT(%s SEPARATOR ", ")',
@@ -220,7 +222,8 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_PRODUCT_PHONE,
                     DbTable_Product::COL_PRODUCT_REFER_LINK,
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
-                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE					
+                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
+                    DbTable_Product::COL_PRODUCT_FLAG_CROP,
                 )
             );
 			if ($lat &&  $lng){
@@ -249,6 +252,7 @@ class Model_Dao_Product extends DbTable_Product
 							DbTable_Product::COL_PRODUCT_REFER_LINK,
 							DbTable_Product::COL_FK_PRODUCT_OWNER,
 							DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
+                            DbTable_Product::COL_PRODUCT_FLAG_CROP,
 							'distance' => new Zend_Db_Expr(
 									'3959 * acos (
 									cos ( radians(' . $lat . ') )
@@ -385,7 +389,8 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_PRODUCT_REFER_LINK,
                     DbTable_Product::COL_FK_DISTRICT,
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
-                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE
+                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
+                    DbTable_Product::COL_PRODUCT_FLAG_CROP,
                 )
             )
             ->where(DbTable_Product::COL_FK_CONFIG_STATUS . '=?', Application_Constant_Db_Config_Active::ACTIVE)
@@ -439,7 +444,8 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_FK_CONFIG_STATUS,
                     DbTable_Product::COL_PRODUCT_REFER_LINK,
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
-                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE
+                    DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
+                    DbTable_Product::COL_PRODUCT_FLAG_CROP,
 
                 )
             )
@@ -476,7 +482,8 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_PRODUCT_REFER_LINK,
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
                     DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
-                    DbTable_Product::COL_PRODUCT_PAID_PRICE
+                    DbTable_Product::COL_PRODUCT_PAID_PRICE,
+                    DbTable_Product::COL_PRODUCT_FLAG_CROP,
 
                 )
             )
@@ -524,6 +531,7 @@ class Model_Dao_Product extends DbTable_Product
                 DbTable_Product::COL_PRODUCT_REFER_LINK,
                 DbTable_Product::COL_FK_PRODUCT_OWNER,
                 DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
+                DbTable_Product::COL_PRODUCT_FLAG_CROP,
                 'distance' => new Zend_Db_Expr(
                     '3959 * acos (
                     cos ( radians(' . $lat . ') )

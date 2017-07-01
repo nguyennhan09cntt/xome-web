@@ -45,6 +45,7 @@ class Admin_Model_ProductImage extends Application_Singleton
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_NOTE => $note,
                 DbTable_Product_Image::COL_FK_PRODUCT => $product,
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT => $import,
+                DbTable_Product_Image::COL_PRODUCT_IMAGE_CROP => true,
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_CREATED_AT => $this->_dao->mysqlSysDate()
             );
             $this->_dao->insert($params);

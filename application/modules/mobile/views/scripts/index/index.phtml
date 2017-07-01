@@ -24,7 +24,7 @@
                         <div class="product-container mt-none" style="border: 1px solid #ddd;">
                             <div class="left-block" >
                                 <a href="/<?php echo $this->productCategoryIdentify($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/'.$this->districtIdentify($product[DbTable_Product::COL_FK_DISTRICT]).'/' . $product[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($product[DbTable_Product::COL_PRODUCT_ID]); ?>" style="border: 1px solid #ddd;">
-                                    <img class="img-responsive real-estate" alt="xome" src="<?php echo $this->showImageUrl($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]);?>"/>
+                                    <img class="img-responsive real-estate" alt="xome" src="<?php echo $this->showImageUrl($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE],345, $product[DbTable_Product::COL_PRODUCT_FLAG_CROP]);?>"/>
                                 </a>
 
                                 <div class="product-price">

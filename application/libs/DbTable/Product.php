@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-05-28 18:56:43
+* Last modified : 2017-07-01 09:24:02
 * Class DbTable_Product
 */
 
@@ -292,6 +292,14 @@ class DbTable_Product extends Application_Db_DbTable
     * @extra <>
     */
     const COL_CUSTOMER_COOKIE = 'customer_cookie';
+    
+    /**
+    * @type <tinyint(4)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_FLAG_CROP = 'product_flag_crop';
     
     /**
     * @type <datetime>

@@ -105,7 +105,7 @@ class Admin_ProductController extends Application_Controller_BackEnd_Admin
         $elementName = 'file_image';
         $image = $this->getRequest()->getParam('image');
         if (isset($_FILES[$elementName]) && $_FILES[$elementName]['name']) {
-            $image = $this->uploadImage('product', $elementName);
+            $image = $this->uploadImage('product', $elementName, true);
         }
         if (!$shortDescription) {
             $shortDescription = strip_tags($description);

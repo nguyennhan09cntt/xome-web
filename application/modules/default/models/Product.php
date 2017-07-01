@@ -40,6 +40,79 @@ class Model_Product extends Application_Singleton
     }
 
     /**
+     * @param $name
+     * @param $referCode
+     * @param $category
+     * @param $originalPrice
+     * @param $paidPrice
+     * @param $thumbNail
+     * @param $description
+     * @param int $component
+     * @param string $note
+     * @param string $shortDescription
+     * @return null|string
+     */
+    public function insert($name, $referCode, $category, $originalPrice, $paidPrice, $thumbNail, $description, $component, $note, $shortDescription, $promotionPrice, $address, $area, $own = null, $phone = null, $object = null, $district = null, $customerId = null, $lat = 0, $lng = 0, $flagUpload = 1, $productOwnId = null, $cookie = null)
+    {
+        $name = trim($name);
+        $referCode = trim($referCode);
+        $category = $category ? intval($category) : null;
+        $originalPrice = intval($originalPrice);
+        $paidPrice = intval($paidPrice);
+        $thumbNail = trim($thumbNail);
+        $description = trim($description);
+        $component = intval($component);
+        $note = trim($note);
+        $shortDescription = trim($shortDescription);
+        $identify = Application_Function_String::getFormatUrl($name) . '-' . Application_Function_String::randomString(6) . '-' . Application_Function_String::getFormatUrl($referCode);
+        $promotionPrice = intval($promotionPrice);
+        $address = trim($address);
+        $area = intval($area);
+        $district = $district ? intval($district) : null;
+        $customerId = $customerId ? intval($customerId) : null;
+        $lng = floatval($lng);
+        $lat = floatval($lat);
+        $flagUpload = intval($flagUpload);
+        $productOwnId = $productOwnId? intval($productOwnId) : null;
+        $cookie = $cookie ? trim($cookie): null;
+        $result = null;
+        try {
+            $params = array(
+                DbTable_Product::COL_PRODUCT_NAME => $name,
+                DbTable_Product::COL_PRODUCT_REFER_CODE => $referCode,
+                DbTable_Product::COL_PRODUCT_IDENTIFY => $identify,
+                DbTable_Product::COL_PRODUCT_ORIGINAL_PRICE => $originalPrice,
+                DbTable_Product::COL_PRODUCT_PROMOTION_PRICE => $promotionPrice,
+                DbTable_Product::COL_PRODUCT_OWN => $own,
+                DbTable_Product::COL_PRODUCT_PHONE => $phone,
+                DbTable_Product::COL_PRODUCT_PAID_PRICE => $paidPrice,
+                DbTable_Product::COL_PRODUCT_THUMB_NAIL => $thumbNail,
+                DbTable_Product::COL_FK_PRODUCT_COMPONENT => $component,
+                DbTable_Product::COL_PRODUCT_CATEGORY_ID => $category,
+                DbTable_Product::COL_PRODUCT_DESCRIPTION => $description,
+                DbTable_Product::COL_PRODUCT_NOTE => $note,
+                DbTable_Product::COL_PRODUCT_SHORT_DESCRIPTION => $shortDescription,
+                DbTable_Product::COL_PRODUCT_QUALITY => 1,
+                DbTable_Product::COL_PRODUCT_ADDRESS => $address,
+                DbTable_Product::COL_PRODUCT_AREA => $area,
+                DbTable_Product::COL_FK_DISTRICT => $district,
+                DbTable_Product::COL_PRODUCT_OBJECT => $object,
+                DbTable_Product::COL_FK_CUSTOMER => $customerId,
+                DbTable_Product::COL_PRODUCT_LAT => $lat,
+                DbTable_Product::COL_PRODUCT_LONG => $lng,
+                DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE => $flagUpload,
+                DbTable_Product::COL_FK_PRODUCT_OWNER => $productOwnId,
+                DbTable_Product::COL_CUSTOMER_COOKIE => $cookie,
+                DbTable_Product::COL_PRODUCT_FLAG_CROP => 1,
+                DbTable_Product::COL_PRODUCT_CREATED_AT => $this->_dao->mysqlSysDate()
+            );
+            $result = $this->_dao->insertAndGetLastInsertId($params);
+        } catch (Exception $e) {
+            $result = $e->getMessage();
+        }
+        return $result;
+    }
+    /**
      * get product listing at home page
      * @param $page
      * @param $limit

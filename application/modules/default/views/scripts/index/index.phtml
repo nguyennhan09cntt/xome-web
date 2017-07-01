@@ -65,7 +65,7 @@
                                         <a class=""
                                            href="/<?php echo $this->productCategoryIdentify($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($product[DbTable_Product::COL_FK_DISTRICT]) . '/' . $product[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' . $this->productEncode($product[DbTable_Product::COL_PRODUCT_ID]); ?>">
                                             <img class="thumb-info-image"
-                                                 src="<?php echo $this->showImageUrl($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]); ?>"
+                                                 src="<?php echo $this->showImageUrl($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE],350, $product[DbTable_Product::COL_PRODUCT_FLAG_CROP]); ?>"
                                                  alt="<?php echo $product[DbTable_Product::COL_PRODUCT_NAME] ?>"
                                                  height="100">
                                         </a>

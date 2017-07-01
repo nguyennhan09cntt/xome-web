@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-05-28 18:56:44
+* Last modified : 2017-07-01 09:24:02
 * Class DbTable_Site_Content
 */
 

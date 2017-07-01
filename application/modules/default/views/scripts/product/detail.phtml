@@ -60,10 +60,10 @@
                                             <div class="micro-status-label"></div>
                                             <div class="main-image">
                                                 <div class="img">
-                                                    <a href="<?php echo $this->showImageUrl($this->dataInfo[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]); ?>"
+                                                    <a href="<?php echo $this->showImageUrl($this->dataInfo[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE],600, false); ?>"
                                                        class="fancybox" data-fancybox-group="gallery">
                                                         <img itemprop="image" class="pic-place"
-                                                             src="<?php echo $this->showImageUrl($this->dataInfo[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]); ?>"
+                                                             src="<?php echo $this->showImageUrl($this->dataInfo[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE], 440,$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_CROP]); ?>"
                                                              alt="<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_NAME]; ?>">
                                                     </a>
                                                 </div>
@@ -279,12 +279,12 @@
 
                                                             <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
                                                                 <div class="portfolio-item">
-                                                                    <a href="<?php echo $this->showImageUrl($data[DbTable_Product_Image::COL_PRODUCT_IMAGE_NAME], $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT], 400); ?>"
+                                                                    <a href="<?php echo $this->showImageUrl($data[DbTable_Product_Image::COL_PRODUCT_IMAGE_NAME], $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT], 400, $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_CROP]); ?>"
                                                                        class="fancybox" data-fancybox-group="gallery">
                                                                 <span class="thumb-info">
                                                                     <span class="thumb-info-wrapper">
                                                                         <img
-                                                                            src="<?php echo $this->showImageUrl($data[DbTable_Product_Image::COL_PRODUCT_IMAGE_NAME], $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT], 400); ?>"
+                                                                            src="<?php echo $this->showImageUrl($data[DbTable_Product_Image::COL_PRODUCT_IMAGE_NAME], $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT], 400, $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_CROP]); ?>"
                                                                             class="img-responsive"
                                                                             alt="<?php echo $data[DbTable_Product_Image::COL_PRODUCT_IMAGE_NOTE]; ?>">
 
@@ -302,7 +302,7 @@
 
                                             <?php } else { ?>
                                                 <img alt=""
-                                                     src="<?php echo $this->showImageUrl($this->dataInfo[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]); ?>">
+                                                     src="<?php echo $this->showImageUrl($this->dataInfo[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE], 330, $this->dataInfo[DbTable_Product::COL_PRODUCT_FLAG_CROP]); ?>">
                                             <?php } ?>
 
                                         </section>

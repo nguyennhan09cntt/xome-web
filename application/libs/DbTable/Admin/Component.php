@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-05-28 18:56:42
+* Last modified : 2017-07-01 09:24:00
 * Class DbTable_Admin_Component
 */
 
