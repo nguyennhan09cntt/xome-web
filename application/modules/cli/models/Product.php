@@ -70,6 +70,7 @@ class Cli_Model_Product extends Application_Singleton
                 DbTable_Product::COL_FK_PRODUCT_OWNER => $fkProductOwner,
                 DbTable_Product::COL_PRODUCT_FACEBOOK_AUTHOR_ID => $facebookAuthorId,
                 DbTable_Product::COL_PRODUCT_FACEBOOK_AUTHOR_NAME => $facebookAuthorName,
+                DbTable_Product::COL_PRODUCT_FLAG_CROP => 1,
                 DbTable_Product::COL_PRODUCT_CREATED_AT => $this->_dao->mysqlSysDate()
             );
             $result = $this->_dao->insertAndGetLastInsertId($params);
