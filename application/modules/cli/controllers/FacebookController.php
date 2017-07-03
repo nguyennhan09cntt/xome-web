@@ -97,6 +97,7 @@ class Cli_FacebookController extends Application_Controller_Cli
     }
 
 
+    //                       /usr/bin/php /usr/share/nginx/phong_tro/public/cli.php -m cli -c facebook -a import
     public function importAction()
     {
         $data = array();
