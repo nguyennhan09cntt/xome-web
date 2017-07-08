@@ -16,11 +16,15 @@ class Mobile_View_Helper_ShowImageUrl extends Zend_View_Helper_Abstract
         if (!$path && !$image) {
             $image = 'no-image.png';
         }else if($path){
-            $position = strpos($image, '.');
-            if ($crop == true) {
-                # scale 440 x 275
-                $image = substr_replace($image, '_440x275', $position, 0);
+            if ($image){
+                $position = strpos($image, '.');
+                if ($crop == true) {
+                    # scale 440 x 275
+                    $image = substr_replace($image, '_440x275', $position, 0);
+                }
             }
+
+
         }
         $image = $image ? $image : 'no-image.png';
         $fullPatch = sprintf(
