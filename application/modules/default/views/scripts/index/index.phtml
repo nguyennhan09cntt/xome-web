@@ -116,15 +116,67 @@
 
 
                         <?php } ?>
-
-
                     </div>
                     <!-- ./PRODUCT LIST -->
                 </div>
                 <!-- ./view-product-list-->
-                <div class="sortPagiBar">
+                <div class="sortPagiBar mb-md">
                     <div class="bottom-pagination pull-right">
                         <a class="btn btn-default btn_search_box  blue-steel" href="/tim-kiem?page=2">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="mt-xl mb-md"></div>
+                <hr>
+                <div id="view-contact-list" class="view-product-list">
+                    <h2 class="page-heading center">
+                        <span class="page-heading-title">TIN TÌM PHÒNG</span>
+                    </h2>
+
+                    <!-- CONTACT LIST -->
+
+                    <div class="row product-list list mt-sm">
+                        <?php foreach ($this->contactData as $key => $contact) { ?>
+
+                            <div class="col-md-4 product-item">
+                                <span class="thumb-info thumb-info-preview thumb-info-preview-long">
+                                    <span class="thumb-info-wrapper">
+                                        <!--<span class="thumb-info-image" data-original="img/previews/preview-corporate-version8.jpg" data-plugin-lazyload="" style="display: block; background-image: url(&quot;img/previews/preview-corporate-version8.jpg&quot;);"></span>-->
+                                        <a href="/tin-tim-phong/<?php echo Application_Function_String::getFormatUrl($contact[DbTable_Contact::COL_CONTACT_ADDRESS]) . '-' . strtolower($this->contactEncode($contact[DbTable_Contact::COL_CONTACT_ID])) . '.html'; ?>">
+                                            <img class="img-responsive"
+                                                 src="<?php echo $contact[DbTable_Contact::COL_CONTACT_URL_STATIC_MAP] ? $contact[DbTable_Contact::COL_CONTACT_URL_STATIC_MAP] : '/upload/backgrounds/no-image-box.png'; ?>"
+                                                 alt="<?php echo $contact[DbTable_Contact::COL_CONTACT_ADDRESS]; ?>"
+                                                 title="<?php echo $contact[DbTable_Contact::COL_CONTACT_ADDRESS]; ?>">
+                                        </a>
+                                        <div class="figType"><a
+                                                href="/"><?php echo $contact[DbTable_Contact::COL_CONTACT_NAME]; ?></a>
+                                        </div>
+                                        <div class="figPrice">
+                                            <?php echo $contact[DbTable_Contact::COL_CONTACT_PHONE]?>
+                                        </div>
+                                    </span>
+                                </span>
+
+                                <div class="recent-posts pt-md mb-lg" style="border: 1px solid #DDD; border-top: none;">
+                                    <article class="post mr-sm ml-sm">
+                                        <h5 class="mb-xs course-title" style="min-height: 35px;">
+                                            <a class=""
+                                               href="/tin-tim-phong/<?php echo Application_Function_String::getFormatUrl($contact[DbTable_Contact::COL_CONTACT_ADDRESS]) . '-' . strtolower($this->contactEncode($contact[DbTable_Contact::COL_CONTACT_ID])) . '.html'; ?>">Cần tìm phòng <?php echo $contact[DbTable_Contact::COL_CONTACT_ADDRESS] ?></a>
+                                        </h5>
+
+
+                                    </article>
+                                </div>
+                            </div>
+
+
+                        <?php } ?>
+                    </div>
+                    <!-- ./CONTACT LIST -->
+                </div>
+
+                <div class="sortPagiBar">
+                    <div class="bottom-pagination pull-right">
+                        <a class="btn btn-default btn_search_box  blue-steel" href="/tin-tim-phong.html">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -133,16 +185,6 @@
 
     </div>
 
-    <div class="container center">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- Xome-Index -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-2851250231451019"
-             data-ad-slot="6619430282"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    </div>
+
 
 </div>
