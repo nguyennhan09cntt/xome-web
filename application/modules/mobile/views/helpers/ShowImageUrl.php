@@ -11,7 +11,7 @@ class Mobile_View_Helper_ShowImageUrl extends Zend_View_Helper_Abstract
     public function showImageUrl($image, $import = false, $width = 330, $crop = false)
     {
         $link = 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=' . $width;
-        $path = $import ? '' : 'http://xome.ln3.in/upload/';
+        $path = $import ? '' : 'http://xome.vn/upload/';
 
         if (!$path && !$image) {
             $image = 'no-image.png';
