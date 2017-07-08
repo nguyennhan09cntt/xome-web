@@ -23,16 +23,15 @@
                                     <?php foreach ($this->productRelationData as $productRelation) {?>
                                         <li>
                                             <div class="post-thumb">
-                                                <a href="/<?php echo $this->productCategoryIdentify($productRelation[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($productRelation[DbTable_Product::COL_FK_DISTRICT]).'/' . $productRelation[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($productRelation[DbTable_Product::COL_PRODUCT_ID]); ?>"><img src="<?php echo $this->showImageUrl($productRelation[DbTable_Product::COL_PRODUCT_THUMB_NAIL], $productRelation[DbTable_Product::COL_PRODUCT_REFER_LINK]!='', 90);?>" alt="xome" style="height: 100px;width: 100%;"></a>
+                                                <a href="/<?php echo $this->productCategoryIdentify($productRelation[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($productRelation[DbTable_Product::COL_FK_DISTRICT]).'/' . $productRelation[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($productRelation[DbTable_Product::COL_PRODUCT_ID]); ?>"><img src="<?php echo $this->showImageUrl($productRelation[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$productRelation[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE], 90, $productRelation[DbTable_Product::COL_PRODUCT_FLAG_CROP]);?>" alt="xome" style="height: 100px;width: 100%;"></a>
                                             </div>
                                             <div class="post-info">
                                                 <h5 class="entry_title"><a href="/<?php echo $this->productCategoryIdentify($productRelation[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($productRelation[DbTable_Product::COL_FK_DISTRICT]).'/' . $productRelation[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($productRelation[DbTable_Product::COL_PRODUCT_ID]); ?>"><?php echo $productRelation[DbTable_Product::COL_PRODUCT_NAME];?></a></h5>
 
                                                 <div class="post-meta">
                                                     <span class="date"><i class="fa fa-calendar"></i> <?php echo $this->formatTime($productRelation[DbTable_Product::COL_PRODUCT_CREATED_AT]);?></span>
-                                                    <!--<span class="comment-count">
-                                                        <i class="fa fa-comment-o"></i> 3
-                                                    </span>-->
+                                                    <span class="product-tag-price" style="float: right;color: red;">
+                                                        <i class="fa fa-tag"></i> <?php echo number_format($productRelation[DbTable_Product::COL_PRODUCT_PAID_PRICE]);?>đ/tháng                                                    </span>
                                                 </div>
                                             </div>
                                         </li>
@@ -45,7 +44,10 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-6">
+                <?php echo $this->render('widgets/register-real-estate.phtml'); ?>
+                <div class="mt-sm"></div>
                 <div class="blog-page">
+
                     <div class="media">
                         <a href="#" class="pull-left">
                             <img alt="" src="http://static.xome.vn/upload/default/no-avatar.png" class="media-object">

@@ -55,8 +55,14 @@ class IndexController extends Application_Controller_FrontEnd_Default
             'sliderData',
             $slideData
         );
+        $data = Model_Contact::getInstance()->getListing(1, 4, null, null);
+
+        $contactData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();
+
 
         $this->view->assign('productData', $productData);
+
+        $this->view->assign('contactData', $contactData);
 
     }
 
