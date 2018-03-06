@@ -252,7 +252,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
             'Đăng tin cho thuê phòng trọ, nhà trọ, tìm người ở ghép tại Hồ Chí Minh',
             'Các bước đăng tin dễ dàng thuận tiện, giúp người dùng dễ dàng tìm kiếm nhà trọ, phòng trọ. Hãy đưa thông tin nhà trọ của mình lên Xome ngay.'
         );
-        $this->setMetaImage('http://statics.xome.ln3.in/upload/default/dang-tin.png');
+        $this->setMetaImage('http://statics.xome.vn/upload/default/dang-tin.png');
         $this->view->assign('menuHeader', Application_Constant_Identify::MENU_HEADER_LEASE_ADD);
     }
 
@@ -318,7 +318,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
             }
         }
         $id = Model_Product::getInstance()->insert($name, $referCode, $categoryId, $originalPrice, $paidPrice, $image, $description, $component, $note, $shortDescription, $promotionPrice, $address, $area, $own, $phone, $object, $district, $customerId, 0, 0, 1, $productOwnId, $cookie);
-
+        echo $id;
         if (intval($id)) {
             if ($facilityArrId) {
                 foreach ($facilityArrId as $facilityId) {

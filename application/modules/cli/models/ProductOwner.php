@@ -58,4 +58,14 @@ class Cli_Model_ProductOwner extends Application_Singleton
         return $this->_dao->getByFacebookId($facebookId);
     }
 
+    /**
+     * @param string $phone
+     * @return null|Zend_Db_Table_Row_Abstract
+     */
+    public function getByPhone($phone)
+    {
+        $phone = trim($phone);
+        return $this->_dao->getByPhone($phone);
+    }
+
 }

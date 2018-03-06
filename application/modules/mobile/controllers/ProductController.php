@@ -115,6 +115,61 @@ class Mobile_ProductController extends Application_Controller_FrontEnd_Default
                     $this->view->assign('menuHeader', Application_Constant_Identify::MENU_HEADER_MOTEL_ROOM_TRANSPLANT);
                 }
             }
+            $metaTitle = $product[DbTable_Product::COL_PRODUCT_NAME];
+            $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+            $uri = str_replace('//','/',$uri.'/ban-do');
+
+            $this->view->assign('detail_uri', $uri);
+            $this->setMetaData(
+                $metaTitle,
+                $this->getTranslateValue('common_keywords'),
+                $this->getTranslateValue('common_description')
+   
+            );
+
+        } else {
+            $this->goto404();
+        }
+
+    }
+
+    public function detailMapAction()
+    {
+        $productIdentify = $this->getParam('productIdentify');
+        $product = Model_Product::getInstance()->getDetail($productIdentify);
+
+        if ($product) {           
+            $this->view->assign('dataInfo', $product);            
+            $data = Model_Product::getInstance()->getListing(1, 8, 1, $product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]);
+            $productRelationData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();
+            $this->view->assign('productRelationData', $productRelationData);
+            $this->noGlobalSlide();
+            if ($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) {
+
+                if ($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID] == 1) {
+
+                    $this->view->assign('menuHeader', Application_Constant_Identify::MENU_HEADER_MOTEL);
+                }
+                if ($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID] == 2) {
+
+                    $this->view->assign('menuHeader', Application_Constant_Identify::MENU_HEADER_MOTEL_ROOM);
+                }
+                if ($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID] == 3) {
+
+                    $this->view->assign('menuHeader', Application_Constant_Identify::MENU_HEADER_MOTEL_ROOM_TRANSPLANT);
+                }
+            }
+            $metaTitle = 'Ban do '.$product[DbTable_Product::COL_PRODUCT_NAME];
+            $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+            $uri = str_replace('/ban-do', '/', $uri);
+            $this->view->assign('detail_uri', $uri);
+     
+            $this->setMetaData(
+                $metaTitle,
+                $this->getTranslateValue('common_keywords'),
+                $this->getTranslateValue('common_description')
+   
+            );
 
         } else {
             $this->goto404();

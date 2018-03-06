@@ -56,7 +56,7 @@ class CustomerController extends Application_Controller_FrontEnd_Default
     {
         $pBackUrl = $this->getRequest()->getParam('u');
         #$pBackUrl = $pBackUrl ? base64_decode($pBackUrl) : '';
-        $url = 'http://xome.ln3.in/customer/fb-callback';
+        $url = 'http://xome.vn/customer/fb-callback';
         $fb = new Facebook([
             'app_id' => '835308879856695', // Replace {app-id} with your app id
             'app_secret' => 'b02505d45ad717f89ea999e3b23c9517',
@@ -84,7 +84,7 @@ class CustomerController extends Application_Controller_FrontEnd_Default
     {
         $pBackUrl = $this->getRequest()->getParam('u');
         #$pBackUrl = $pBackUrl ? base64_decode($pBackUrl) : '';
-        $url = 'http://xome.ln3.in/customer/fb-callback';
+        $url = 'http://xome.vn/customer/fb-callback';
         $fb = new Facebook([
             'app_id' => '835308879856695', // Replace {app-id} with your app id
             'app_secret' => 'b02505d45ad717f89ea999e3b23c9517',

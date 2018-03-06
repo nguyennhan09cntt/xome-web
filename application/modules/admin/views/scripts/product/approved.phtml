@@ -107,7 +107,7 @@
                                 <?php if($data->{DbTable_Product::COL_PRODUCT_REFER_LINK}){ ?>
                                 <a href="<?php echo $data->{DbTable_Product::COL_PRODUCT_REFER_LINK};?>" target="_blank">Nguồn</a>
                                 <?php }?>
-                                <a href="http://xome.ln3.in/<?php echo $this->productCategoryIdentify($data[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/'.$this->districtIdentify($data[DbTable_Product::COL_FK_DISTRICT]).'/' . $data[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($data[DbTable_Product::COL_PRODUCT_ID]); ?>" target="_blank">Preview</a>
+                                <a href="http://xome.vn/<?php echo $this->productCategoryIdentify($data[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/'.$this->districtIdentify($data[DbTable_Product::COL_FK_DISTRICT]).'/' . $data[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' .$this->productEncode($data[DbTable_Product::COL_PRODUCT_ID]); ?>" target="_blank">Preview</a>
                             </td>
                         </tr>
                     <?php } ?>

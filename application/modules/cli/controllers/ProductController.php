@@ -236,6 +236,8 @@ class Cli_ProductController extends Application_Controller_Cli
 
         }
 
+        Application_Cache_Default::getInstance()->resetHomeProduct();
+        Application_Cache_Default::getInstance()->cleanTags(array(Application_Constant_Global::KEY_COMPONENT_PRODUCT));
 
         var_dump('DONE : IMPORT');
     }
@@ -292,7 +294,12 @@ class Cli_ProductController extends Application_Controller_Cli
 
             if ($element && $element ['content']) {
 
-                $thumbnail = '';
+                if ($result['image']) {
+                    var_dump($result['image']);
+                    $thumbnail = $this->downloadImage($result['image'], 'product', $element ['uri']);
+                    var_dump($thumbnail);
+                }
+                
 
                 $phone = $element['phone'];
                 $price = floatval($element['price']);
@@ -300,8 +307,24 @@ class Cli_ProductController extends Application_Controller_Cli
                 $address = $element['address'];
                 $area = $element['area'];
 
-                $str = Cli_Model_Product::getInstance()->insert($element ['name'], $thumbnail, $element ['content'], $element ['description'], $categoryId, $componentId, $thumbnail, $element['src'], $phone, $area, $price, $element ['uri'], $address, $element['district']);
+                $ownerId = null;
+                $owner = Cli_Model_ProductOwner::getInstance()->getByPhone($phone);
+                $owner = $owner ? $owner->toArray() : null;
+                if ($owner) {
+                    $ownerId = $owner[DbTable_Product_Own::COL_PRODUCT_OWN_ID];
+                } else {
+                    $ownerId = Cli_Model_ProductOwner::getInstance()->insert('No name', $phone, null, null, 0);
+                }
+
+                $ownerId = intval($ownerId) > 0 ? intval($ownerId) : null;
+
+
+                $str = Cli_Model_Product::getInstance()->insert($element ['name'], $thumbnail, $element ['content'], $element ['description'], $categoryId, $componentId, $thumbnail, $element['src'], $phone, $area, $price, $element ['uri'], $address, $element['district'],'No name', $ownerId);
+
+
                 if ($str) {
+                    $productId = intval($str);
+                    Admin_Model_ProductImage::getInstance()->insert($thumbnail, $element ['name'], $productId, false);
                     var_dump($str);
                 }
 
@@ -309,6 +332,8 @@ class Cli_ProductController extends Application_Controller_Cli
 
 
         }
+
+
 
         var_dump('DONE ' . $url);
         return true;
@@ -335,8 +360,10 @@ class Cli_ProductController extends Application_Controller_Cli
         // find all div tags with class=td-post-content
         if ($html_dom->find($item['content'])) {
             $result['price'] = $this->formatNumber($html_dom->find($item['price'])[0]->innertext);
-            $result['phone'] = html_entity_decode($html_dom->find($item['phone'])[0]->innertext);
+            $result['phone'] = $this->formatNumber($html_dom->find($item['phone'])[0]->innertext);
             $result['area'] = $this->formatNumber($html_dom->find($item['area'])[0]->innertext);
+            $data_image ='data-image';
+            $result['image'] = $html_dom->find($item['image'])[0]->$data_image;
             $result['address'] = $html_dom->find($item['address'])[0]->innertext;
             $result['content'] = html_entity_decode($html_dom->find($item['content'])[0]->innertext);
             return $result;
@@ -458,5 +485,57 @@ class Cli_ProductController extends Application_Controller_Cli
         }
         $imageArray[0] = $imagePath;
         return $imageArray;
+    }
+
+    private function generateImageName($link, $fileName)
+    {
+        $fileInfo = explode('.', $link);
+        $extension = $fileInfo[count($fileInfo) - 1];
+        return sprintf('%s_%s.%s', $fileName, time() . rand(1, 100), $extension);
+    }
+
+    private function downloadImage($linkImage, $component, $fileName)
+    {
+        $image = null;
+        $folder = $this->getUploadPath() . '/' . $component;
+        if (!is_dir($folder)) {
+            mkdir($folder);
+        }
+        $folder = $folder . '/' . date('Y');
+        if (!is_dir($folder)) {
+            mkdir($folder);
+        }
+        $folder = $folder . '/' . date('m');
+        if (!is_dir($folder)) {
+            mkdir($folder);
+        }
+        $folder = $folder . '/' . date('d');
+        if (!is_dir($folder)) {
+            mkdir($folder);
+        }
+
+        $pathImage = strtok($linkImage, '?');
+        $imagePath = sprintf('%s/%s', $folder, $this->generateImageName($pathImage, $fileName));
+
+        $imageFile = file_get_contents($linkImage);
+
+        if ($imageFile) {
+            try {
+                file_put_contents($imagePath, $imageFile);
+
+                $image = str_replace($this->getUploadPath(), '', $imagePath);
+                $position = strpos($imagePath, '.');
+                # scale 440 x 275
+                $image440x275 = substr_replace($imagePath, '_440x275', $position, 0);
+                Application_Function_Image::crop($imagePath, $image440x275, 440, 275);
+
+            } catch (Exception $ex) {
+                $image = null;
+            }
+
+        }
+
+        return $image;
+
     }
 }

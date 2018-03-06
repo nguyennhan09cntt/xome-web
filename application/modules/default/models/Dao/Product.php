@@ -171,6 +171,7 @@ class Model_Dao_Product extends DbTable_Product
                     Application_Constant_Db_Config_Active::ACTIVE,
                     Application_Constant_Db_Config_Active::INACTIVE,
                     Application_Constant_Db_Config_Active::APPROVED,
+		    Application_Constant_Db_Config_Active::EXPIRED,	
                     Application_Constant_Db_Config_Active::PENDING
                 )
             );
@@ -224,6 +225,7 @@ class Model_Dao_Product extends DbTable_Product
                     DbTable_Product::COL_FK_PRODUCT_OWNER,
                     DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE,
                     DbTable_Product::COL_PRODUCT_FLAG_CROP,
+                    DbTable_Product::COL_PRODUCT_PAGEVIEW,
                 )
             );
 			if ($lat &&  $lng){

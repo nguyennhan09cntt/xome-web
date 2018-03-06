@@ -18,7 +18,7 @@
             <div class="center_column col-xs-12 col-sm-9" id="center_column">
                 <?php echo $this->render('widgets/register-real-estate.phtml'); ?>
                 <!-- view-product-list-->
-                <div id="view-product-list" class="view-product-list">
+                <div id="view-product-list" class="view-product-list mt-sm">
                     <h2 class="page-heading">
                         <span class="page-heading-title">Kết quả tìm kiếm</span>
                         <a class="btn pull-right" href="/tim-kiem-ban-do?<?php echo $this->queryPagination;?>" style="background-color:#ff3366; color: white;"><i class="fa fa-map-marker"></i>&nbsp;Hiển thị theo bản đồ</a>
@@ -62,17 +62,15 @@
                                         <div class="post-meta">
                                             <span><i
                                                     class="fa fa-calendar"></i> <?php echo $this->formatTime($product[DbTable_Product::COL_PRODUCT_CREATED_AT]); ?> </span>
-                                            <span><i class="fa fa-user"></i> By <a
+                                            <!-- <span><i class="fa fa-user"></i> By <a
                                                     href="/thong-tin-nguoi-dang/<?php echo $product[DbTable_Product::COL_PRODUCT_PHONE].'-'. $this->productOwnerEncode($product[DbTable_Product::COL_FK_PRODUCT_OWNER]).'.html'; ?>"
-                                                    target="_blank"><?php echo $product[DbTable_Product::COL_PRODUCT_PHONE]; ?></a> </span>
+                                                    target="_blank"><?php echo $product[DbTable_Product::COL_PRODUCT_PHONE]; ?></a> </span> -->
 
                                             <!--<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>-->
                                         </div>
                                         <div class="post-meta-action">
                                             <span class="product-price"><i class="fa fa-tag"></i> <?php echo  $product[DbTable_Product::COL_PRODUCT_PAID_PRICE] > 1000 ? number_format($product[DbTable_Product::COL_PRODUCT_PAID_PRICE]).' VND' : 'Thỏa thuận' ?></span>
-                                            <span class="pull-right"><a
-                                                    href="/<?php echo $this->productCategoryIdentify($product[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($product[DbTable_Product::COL_FK_DISTRICT]) . '/' . $product[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' . $this->productEncode($product[DbTable_Product::COL_PRODUCT_ID]); ?>"
-                                                    class="btn btn-xs btn-primary">Chi tiết</a></span>
+                                           <span class="pull-right"><i class="fa fa-eye"></i> <?php echo  $product[DbTable_Product::COL_PRODUCT_PAGEVIEW]; ?></span>
                                             <!--<a href="/khoa-hoc/dang-ky.html" class="btn btn-xs btn-primary pull-right">Đăng ký</a>-->
                                         </div>
                                     </article>

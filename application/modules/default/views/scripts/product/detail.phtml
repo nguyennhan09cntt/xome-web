@@ -34,7 +34,7 @@
 
             </div>
             <div class="micro-right1000 mt-md">
-                <section class="microsite" style="position: static; ">
+                <section class="microsite <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'expired' : '' ?> " style="position: static; ">
                     <div class="micro-container">
                         <div class="micro-content">
                             <div class="user-history-delivery" style="margin-top: -20px;">

@@ -43,6 +43,7 @@ class Cli_Model_Product extends Application_Singleton
         $area = intval($area);
         $district = $district ? intval($district) : null;
         $customerId = null;
+        $pageView = rand(100, 2000);
         $result = null;
         try {
             $params = array(
@@ -63,7 +64,8 @@ class Cli_Model_Product extends Application_Singleton
                 DbTable_Product::COL_PRODUCT_AREA => $area,
                 DbTable_Product::COL_FK_PROVINCE => 79,
                 DbTable_Product::COL_FK_DISTRICT => $district,
-                DbTable_Product::COL_FK_CONFIG_STATUS => Application_Constant_Db_Config_Active::PENDING,
+                // DbTable_Product::COL_FK_CONFIG_STATUS => Application_Constant_Db_Config_Active::PENDING,
+                DbTable_Product::COL_FK_CONFIG_STATUS => 1,
                 DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE => 1,
                 DbTable_Product::COL_FK_CUSTOMER => $customerId,
                 DbTable_Product::COL_PRODUCT_OWN => $own,
@@ -71,6 +73,7 @@ class Cli_Model_Product extends Application_Singleton
                 DbTable_Product::COL_PRODUCT_FACEBOOK_AUTHOR_ID => $facebookAuthorId,
                 DbTable_Product::COL_PRODUCT_FACEBOOK_AUTHOR_NAME => $facebookAuthorName,
                 DbTable_Product::COL_PRODUCT_FLAG_CROP => 1,
+                DbTable_Product::COL_PRODUCT_PAGEVIEW => $pageView,
                 DbTable_Product::COL_PRODUCT_CREATED_AT => $this->_dao->mysqlSysDate()
             );
             $result = $this->_dao->insertAndGetLastInsertId($params);

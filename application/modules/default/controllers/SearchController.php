@@ -152,9 +152,9 @@ class SearchController extends Application_Controller_FrontEnd_Default
                 strip_tags($des)
             );
 
-            $url = 'http://xome.ln3.in/statics/asset/default/img/home.png';
+            $url = 'http://xome.vn/statics/asset/default/img/home.png';
             if ($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL]) {
-                $url = 'http://xome.ln3.in/upload' . $product[DbTable_Product::COL_PRODUCT_THUMB_NAIL];
+                $url = 'http://xome.vn/upload' . $product[DbTable_Product::COL_PRODUCT_THUMB_NAIL];
             }
             if (!$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]) {
                 $url = $product[DbTable_Product::COL_PRODUCT_THUMB_NAIL];

@@ -18,4 +18,16 @@ class Cli_Model_Dao_ProductOwner extends DbTable_Product_Own
             ->where(DbTable_Product_Own::COL_PRODUCT_OWN_FACEBOOK_ID . '=?', $facebookId);
         return $this->fetchRow($select);
     }
+
+
+    /**
+     * @param string $phone
+     * @return null|Zend_Db_Table_Row_Abstract
+     */
+    public function getByPhone($phone)
+    {
+        $select = $this->select()
+            ->where(DbTable_Product_Own::COL_PRODUCT_OWN_PHONE . '=?', $phone);
+        return $this->fetchRow($select);
+    }
 }

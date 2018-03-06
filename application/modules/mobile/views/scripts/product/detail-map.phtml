@@ -1,0 +1,252 @@
+<div id="page-content" class="page-content">
+    <!-- Breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li class="active"><?php echo $this->productCategoryLabel($this->dataInfo[DbTable_Product::COL_PRODUCT_CATEGORY_ID]); ?></li>
+        </ol>
+    </div>
+    <!-- end Breadcrumb -->
+
+    <div class="container">
+        <div class="row">
+            <!-- Property Detail Content -->
+            <div class="col-md-9 col-sm-9">
+
+                <section id="property-detail"
+                         class="<?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'expired' : '' ?>">
+                    <header class="property-title">
+                        <h2 class="post_title"><?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_NAME]; ?></h2>
+                    </header>
+                    <div id="home-slider">
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-sm-12 header-top-right">
+                                    <div class="header-top-right-wapper">
+                                       <div id="googlemaps" class="google-map mt-md"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="navbar">
+                        <div class="mobile_user_action">
+                            <a class="link link_quan_ly_tin btn_nav_menu" href="<?php echo $this->detail_uri;?>" title="Danh mục"><i
+                                    class="fa fa-bars"></i><span>Thông tin</span></a>
+                            <a class="link link_quan_ly_tin btn_nav_search" href="/thong-tin-nguoi-dang/<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE] . '-' . $this->productOwnerEncode($this->dataInfo[DbTable_Product::COL_FK_PRODUCT_OWNER]) . '.html'; ?>"
+                               title=""><i
+                                    class="fa fa-user"></i><span>Người đăng</span></a>
+                            <a class="link link_quan_ly_tin active"
+                               href="#"><i
+                                    class="fa fa-map-marker"></i> <span>Bản đồ</span></a>
+                            <a class="link link_dang_tin" href="#" title="Tìm kiếm phòng, nhà cho thuê"><i
+                                    class="fa  fa-search"></i> <span>Quanh đây</span></a>
+                        </div>
+                    </nav>
+                    <div id="res-summary-point">
+                        <div class="microsite-points-summary">
+                            <!--<div class="microsite-top-points">
+                                <div>
+                                    <span class="avg-txt-highlight">7.7</span>
+                                </div>
+                                <div class="label">Độ tin cậy</div>
+                            </div>-->
+
+                            <?php
+                            $facility = $this->dataInfo['product_facility'];
+
+                            $arrFacility = explode(', ', $facility);
+                            ?>
+                            <div class="microsite-top-points">
+                                <div>
+                                                                        <span class="avg-txt-highlight"><span
+                                                                                class="fa <?php echo in_array(3, $arrFacility) ? 'fa-check-circle' : 'fa-times' ?>"></span></span>
+                                </div>
+                                <div class="label">Gác/lầu</div>
+                            </div>
+
+                            <div class="microsite-top-points">
+                                <div>
+                                                                        <span class="avg-txt-highlight"><span
+                                                                                class="fa <?php echo !in_array(9, $arrFacility) ? 'fa-check-circle' : 'fa-times' ?>"></span></span>
+                                </div>
+                                <div class="label">Chung chủ</div>
+                            </div>
+                            <div class="microsite-top-points">
+                                <div>
+                                                                        <span class="avg-txt-highlight"><span
+                                                                                class="fa <?php echo in_array(4, $arrFacility) ? 'fa-check-circle' : 'fa-times' ?>"></span></span>
+                                </div>
+                                <div class="label">Nhà vệ sinh</div>
+                            </div>
+                            <div class="microsite-top-points">
+                                <div>
+                                                                        <span class="avg-txt-highlight"><span
+                                                                                class="fa <?php echo in_array(11, $arrFacility) ? 'fa-check-circle' : 'fa-times' ?>"></span></span>
+                                </div>
+                                <div class="label">Giờ giấc tự do</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="disableSection">
+                        <div itemprop="address" itemscope=""
+                             itemtype="http://schema.org/PostalAddress"
+                             class="res-common-add">
+                                                                    <span
+                                                                        class="fa fa-location-arrow locationicon"></span>
+                                                            <span>
+
+                                                                    <span
+                                                                        itemprop="streetAddress"><?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_ADDRESS]; ?></span>
+                        </div>
+                        <div class="res-common-price">
+                            <div class="micro-timesopen res-common-minmaxprice">
+                                <span class="fa fa-clock-o houricon"></span>
+                                                                <span class="itsclosed"
+                                                                      title="<?php echo $this->formatTime($this->dataInfo[DbTable_Product::COL_PRODUCT_CREATED_AT], 'd-m-Y'); ?>">Ngày đăng:</span>
+                                <span><?php echo $this->formatTime($this->dataInfo[DbTable_Product::COL_PRODUCT_CREATED_AT], 'd-m-Y h:i'); ?></span>
+                            </div>
+                            <div class="res-common-minmaxprice">
+                                <span class="fa fa-tag minmaxpriceicon"></span>
+                                                                    <span class=""
+                                                                          title="Giá phòng">Giá phòng:</span>
+                                                                            <span itemprop="priceRange" style="color: red;font-weight: 700;">
+                                                                            <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PAID_PRICE] > 100000 ? number_format($this->dataInfo[DbTable_Product::COL_PRODUCT_PAID_PRICE]) . 'đ/tháng' : 'Thỏa thuận'; ?></span>
+                                </span>
+                            </div>
+                            <div class="res-common-minmaxprice">
+                                <span class="fa fa-phone minmaxpriceicon"></span>
+                                                                    <span class=""
+                                                                          title="Số điện thoại">Phone:
+                                                                    </span>
+                                                                     <span itemprop="priceRange">
+                                                                            <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?></span>
+                                <?php if ($this->productImport($this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK])) { ?>
+                                    - <span><a
+                                            href="<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK]; ?>">
+                                            Link tin</a></span>
+                                <?php } ?>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <section id="description" class="mt-sm">
+                        <div class="panel panel-default dd">
+                            <a href="tel://<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?>"
+                               class="btn btn-zita-focus btn-block btn-lg align-left"
+                               onclick=""><span class="fa fa-phone minmaxpriceicon"></span> Liên
+                                hệ ngay: <span
+                                    class="contact-tel"><?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?></span></a>
+                        </div>
+                        <div class="panel panel-default dd">
+                            <a href="#content-1"
+                               class="btn btn-zita-pri btn-block btn-lg align-left"
+                               data-toggle="collapse"
+                               data-parent="#accordion" style="background: #4B77BE !important;color: #fff;">Thông
+                                tin mô tả<span
+                                    class="fa fa-chevron-down pull-right"></span></a>
+
+                            <div id="content-1" class="panel-collapse collapse in">
+                                <div class="panel-body property-content">
+                                    <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_DESCRIPTION]; ?>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+                    <!-- /#description -->
+
+
+
+                    <?php echo $this->formHidden(
+                        'title',
+                        $this->dataInfo ? $this->dataInfo[DbTable_Product::COL_PRODUCT_NAME] : null
+                    ); ?>
+
+                    <?php echo $this->formHidden(
+                        'address',
+                        $this->dataInfo ? $this->dataInfo[DbTable_Product::COL_PRODUCT_ADDRESS] : null
+                    ); ?>
+                    <?php echo $this->formHidden(
+                        'lat',
+                        $this->dataInfo ? $this->dataInfo->{DbTable_Product::COL_PRODUCT_LAT} : null
+                    ); ?>
+                    <?php echo $this->formHidden(
+                        'lng',
+                        $this->dataInfo ? $this->dataInfo->{DbTable_Product::COL_PRODUCT_LONG} : null
+                    ); ?>
+
+            </div>
+            <!-- /.col-md-12 -->
+
+
+        </div>
+        <!-- /.row -->
+        </section>
+        <!-- /#property-detail -->
+
+
+    </div>
+    <!-- /.col-md-9 -->
+    <!-- end Property Detail Content -->
+
+    <!-- sidebar -->
+    <div class="col-md-3 col-sm-3" id="left_column">
+
+        <div class="block left-module">
+            <p class="title_block">Tin tức khác</p>
+
+            <div class="block_content">
+                <!-- layered -->
+                <div class="layered">
+                    <div class="layered-content">
+                        <ul class="blog-list-sidebar clearfix">
+                            <?php foreach ($this->productRelationData as $productRelation) {
+                                if ($productRelation[DbTable_Product::COL_PRODUCT_ID] == $this->dataInfo[DbTable_Product::COL_PRODUCT_ID]) continue;
+                                ?>
+                                <li>
+                                    <div class="post-thumb" style="height: 90px;">
+                                        <a href="/<?php echo $this->productCategoryIdentify($productRelation[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($productRelation[DbTable_Product::COL_FK_DISTRICT]) . '/' . $productRelation[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' . $this->productEncode($productRelation[DbTable_Product::COL_PRODUCT_ID]); ?>"><img
+                                                src="<?php echo $this->showImageUrl($productRelation[DbTable_Product::COL_PRODUCT_THUMB_NAIL], !$productRelation[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]); ?>"
+                                                alt="<?php echo $productRelation[DbTable_Product::COL_PRODUCT_NAME]; ?>"
+                                                class="real-estate"></a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h5 class="entry_title"><a
+                                                href="/<?php echo $this->productCategoryIdentify($productRelation[DbTable_Product::COL_PRODUCT_CATEGORY_ID]) . '/ho-chi-minh/' . $this->districtIdentify($productRelation[DbTable_Product::COL_FK_DISTRICT]) . '/' . $productRelation[DbTable_Product::COL_PRODUCT_IDENTIFY] . '-' . $this->productEncode($productRelation[DbTable_Product::COL_PRODUCT_ID]); ?>"><?php echo $productRelation[DbTable_Product::COL_PRODUCT_NAME]; ?></a>
+                                        </h5>
+
+                                        <div class="post-meta">
+                                                    <span class="date"><i
+                                                            class="fa fa-calendar"></i> <?php echo $this->formatTime($productRelation[DbTable_Product::COL_PRODUCT_CREATED_AT]); ?></span>
+                                            <!--<span class="comment-count">
+                                                <i class="fa fa-comment-o"></i> 3
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+                <!-- ./layered -->
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-3 -->
+    <!-- end Sidebar -->
+
+
+</div>
+<!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+

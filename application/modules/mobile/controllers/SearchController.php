@@ -26,7 +26,7 @@ class Mobile_SearchController extends Application_Controller_FrontEnd_Default
         $facility = $this->getParam('facility');
         $area = $this->getParam('area');
         $priceValue = $this->getParam('price-value');
-	$lat = $this->getParam('lat');
+	    $lat = $this->getParam('lat');
         $lng = $this->getParam('lng');
 
         $priceBegin = 0;
@@ -111,6 +111,52 @@ class Mobile_SearchController extends Application_Controller_FrontEnd_Default
         $this->view->assign('pagination', Application_Function_Pagination_Default::getInstance()->show());
         $this->view->assign('priceValue', $priceValue);
         $this->view->assign('queryPagination', implode('&', $queryPagination));
+
+
+    }
+
+    public function aroundAction()
+    {
+        $this->_helper->layout->setLayoutPath(APPLICATION_PATH . '/modules/mobile/views/scripts');
+
+        $limit = 100;
+        $radius = 0.5;
+        $province = 79;
+        $productIdentify = $this->getParam('productIdentify');
+        $product = Model_Product::getInstance()->getDetail($productIdentify);
+
+        if ($product) {
+            $lat = $product[DbTable_Product::COL_PRODUCT_LAT];
+            $lng = $product[DbTable_Product::COL_PRODUCT_LONG];
+            if ($lat && $lng) {
+                $data = Model_Product::getInstance()->searchAround($lat, $lng, $radius, $limit);
+                $productData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();
+
+                $productData = $productData ? $productData->toArray() : null;
+                $this->view->assign('productData', $productData);
+
+
+            }
+            $this->view->assign('dataInfo', $product);
+            $des = $product[DbTable_Product::COL_PRODUCT_SHORT_DESCRIPTION] ? $product[DbTable_Product::COL_PRODUCT_SHORT_DESCRIPTION] : $this->getTranslateValue('common_description');
+            $this->setMetaData(
+                $product[DbTable_Product::COL_PRODUCT_NAME],
+                $this->getTranslateValue('common_keywords'),
+                strip_tags($des)
+            );
+
+            $url = 'http://xome.vn/statics/asset/default/img/home.png';
+            if ($product[DbTable_Product::COL_PRODUCT_THUMB_NAIL]) {
+                $url = 'http://xome.vn/upload' . $product[DbTable_Product::COL_PRODUCT_THUMB_NAIL];
+            }
+            if (!$product[DbTable_Product::COL_PRODUCT_FLAG_UPLOAD_IMAGE]) {
+                $url = $product[DbTable_Product::COL_PRODUCT_THUMB_NAIL];
+            }
+            $this->setMetaImage($url);
+
+        } else {
+            $this->goto404();
+        }
 
 
     }

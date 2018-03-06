@@ -166,7 +166,7 @@ class Admin_ProductController extends Application_Controller_BackEnd_Admin
                             $url = Admin_Model_Product::getInstance()->generateUrl($customer[DbTable_Product::COL_PRODUCT_ID]);
                             $this->view->assign('customerName', $customer[DbTable_Customer::COL_CUSTOMER_NAME]);
                             $this->view->assign('url', $url);
-                            $this->doSendMail($customer[DbTable_Customer::COL_CUSTOMER_EMAIL], $customer[DbTable_Customer::COL_CUSTOMER_NAME], 'Xác nhận đăng tin cho thuê', $this->view->render('mail-templates/update-product-active.phtml'));
+//                            $this->doSendMail($customer[DbTable_Customer::COL_CUSTOMER_EMAIL], $customer[DbTable_Customer::COL_CUSTOMER_NAME], 'Xác nhận đăng tin cho thuê', $this->view->render('mail-templates/update-product-active.phtml'));
                         }
                     }
                 }
