@@ -244,6 +244,8 @@ class Mobile_ProductController extends Application_Controller_FrontEnd_Default
             }
         }
 
+        Model_LogSearch::getInstance()->insert($query);
+
         $limit = 8;
         $data = Model_Product::getInstance()->searchQuery($page, $limit, $query, $category, $facility, $priceBegin, $priceEnd, $province, $district, $object);
         $productData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();

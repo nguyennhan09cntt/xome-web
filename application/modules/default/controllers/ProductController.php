@@ -202,7 +202,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
         $metaContent = sprintf(
             'Danh sách phòng trọ, nhà trọ cho thuê tại thành phố Hồ Chí Minh'
         );
-
+        Model_LogSearch::getInstance()->insert($query);
         $limit = 9;
         $data = Model_Product::getInstance()->searchQuery($page, $limit, $query, $category, $facility, $priceBegin, $priceEnd, $province, $district, $object);
         $productData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();
