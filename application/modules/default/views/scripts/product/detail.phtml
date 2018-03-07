@@ -34,12 +34,12 @@
 
             </div>
             <div class="micro-right1000 mt-md">
-                <section class="microsite <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'expired' : '' ?> " style="position: static; ">
+                <section class="microsite" style="position: static; ">
                     <div class="micro-container">
                         <div class="micro-content">
                             <div class="user-history-delivery" style="margin-top: -20px;">
                             </div>
-                            <div class="microsite-basic-info">
+                            <div class="microsite-basic-info  <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'expired' : '' ?>">
                                 <!--Start microsite header-->
                                 <div>
                                     <div class="micro-inforbox">
