@@ -86,7 +86,7 @@ class Mobile_SearchController extends Application_Controller_FrontEnd_Default
             $limit = 100;
         }
 
-        Model_LogSearch::getInstance()->insert($query);
+        Model_LogSearch::getInstance()->insert($query,4);
         $data = Model_Product::getInstance()->searchQuery($page, $limit, $query, $category, $facility, $priceBegin, $priceEnd, $province, $district, $object, $areaBegin, $areaEnd, true, $lat, $lng);
         $productData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();
         $total = $data ? $data[Application_Constant_Global::KEY_TOTAL] : 0;
