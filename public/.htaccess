@@ -12,7 +12,7 @@ RewriteRule google197e64adcc9b11de.html$ google197e64adcc9b11de.html [QSA,L]
 RewriteRule !(statics|upload) index.php [QSA,L]
 <FilesMatch "\.(ttf|ttc|otf|eot|woff)$">
     <IfModule mod_headers.c>
-        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Origin "http://xome.vn/"
     </IfModule>
 </FilesMatch>
 
