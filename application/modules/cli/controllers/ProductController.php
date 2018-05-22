@@ -188,7 +188,7 @@ class Cli_ProductController extends Application_Controller_Cli
                     'url' => 'https://phongtro123.com/tim-kiem/page/%s',
                     'page' => '%s',
                     //'size' => 80,
-                    'size' => 6,
+                    'size' => 20,
                     'item' => array(
                         'container' => 'ul.list-post li.post-item',
                         'title' => '.post_info  span.post-title',

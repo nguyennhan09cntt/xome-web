@@ -6,6 +6,15 @@
  * Time: 2:26 PM
  */
 
-class Model_SiteContent {
+class Model_SiteContent extends Application_Singleton
+{
+    protected function __construct()
+    {
 
+    }
+
+    public function getByIdentify($identify)
+    {
+        return Admin_Model_SiteContent::getInstance()->getByIdentify($identify);
+    }
 }

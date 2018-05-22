@@ -29,20 +29,23 @@ class Admin_Model_SiteContent extends Application_Singleton
     /**
      * insert slide
      * @param $name
-     * @param $image
+     * @param $identify
+     * @param $content
      * @return null|string
      */
-    public function insert($name, $content)
+    public function insert($name, $identify, $content, $description)
     {
         $name = trim($name);
-        $identify = Application_Function_String::getFormatUrl($name);
-
+        $identify = $identify ? $identify : Application_Function_String::getFormatUrl($name);
+        $identify = trim($identify);
+        $description = trim($description);
         $result = null;
         try {
             $params = array(
                 DbTable_Site_Content::COL_SITE_CONTENT_NAME => $name,
                 DbTable_Site_Content::COL_SITE_CONTENT_IDENTIFY => $identify,
                 DbTable_Site_Content::COL_SITE_CONTENT_CONTENT => $content,
+                DbTable_Site_Content::COL_SITE_CONTENT_DESCRIPTION => $description,
                 DbTable_Site_Content::COL_SITE_CONTENT_CREATED_AT => $this->_dao->mysqlSysDate()
             );
             $this->_dao->insert($params);
@@ -60,17 +63,19 @@ class Admin_Model_SiteContent extends Application_Singleton
      * @param $image
      * @return null|string
      */
-    public function update($id, $name, $identify, $content)
+    public function update($id, $name, $identify, $content, $description)
     {
         $name = trim($name);
         $identify = trim($identify);
         $id = intval($id);
+        $description = trim($description);
         $result = null;
         try {
             $params = array(
                 DbTable_Site_Content::COL_SITE_CONTENT_NAME => $name,
                 DbTable_Site_Content::COL_SITE_CONTENT_IDENTIFY => $identify,
                 DbTable_Site_Content::COL_SITE_CONTENT_CONTENT => $content,
+                DbTable_Site_Content::COL_SITE_CONTENT_DESCRIPTION => $description,
             );
             $where = sprintf('%s IN (%s)', DbTable_Site_Content::COL_SITE_CONTENT_ID, $this->_dao->getAdapter()->quote($id));
             $this->_dao->update($params, $where);

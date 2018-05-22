@@ -91,5 +91,11 @@
             </div>
 
         </div>
+
+         <div class="row">
+            <?php if($this->siteContent){
+                echo $this->siteContent[DbTable_Site_Content::COL_SITE_CONTENT_CONTENT];
+             }?>
+        </div> 
     </div>
 </div>

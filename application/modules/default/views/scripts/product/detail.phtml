@@ -224,7 +224,7 @@
                                                                     <span class=""
                                                                           title="Số điện thoại">Phone:
                                                                     </span>
-                                                                     <span itemprop="priceRange">
+                                                                     <span itemprop="priceRange" style="  <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'display: none;' : '' ?>">
                                                                             <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?></span>
                                                                     <?php if ($this->productImport($this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK])) { ?>
                                                                         - <span><a
@@ -249,7 +249,7 @@
                             </div>
                             <div class="tabbable-custom mt-md ">
                                 <ul class="nav nav-tabs ">
-                                    <li>
+                                    <li class="active">
                                         <a href="#tab_5_0" data-toggle="tab">
                                             Thông tin </a>
                                     </li>
@@ -257,10 +257,7 @@
                                         <a href="#tab_5_1" data-toggle="tab">
                                             Hình ảnh </a>
                                     </li>
-                                    <li class="active">
-                                        <a href="#tab_5_2" data-toggle="tab">
-                                            Bản đồ </a>
-                                    </li>
+                                    
                                     <li>
                                         <a href="#tab_5_3" data-toggle="tab">
                                             Bình luận </a>
@@ -306,13 +303,19 @@
                                             <?php } ?>
 
                                         </section>
-                                    </div>
-                                    <div class="tab-pane active" id="tab_5_2">
-                                        <div id="googlemaps" class="google-map mt-md"></div>
-                                    </div>
-                                    <div class="tab-pane " id="tab_5_0">
-
-                                        <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_DESCRIPTION]; ?>
+                                    </div>                                    
+                                    <div class="tab-pane active" id="tab_5_0" style="  <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'display: none;' : '' ?>">
+                                        <div style="width: 50%;float:left;" class="mt-md"> 
+                                            <p style="font-weight: bold;">Mô tả:</p>                                           
+                                            <?php
+                                            if($this->productImport($this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK])) { 
+                                                echo nl2br($this->dataInfo[DbTable_Product::COL_PRODUCT_SHORT_DESCRIPTION]); 
+                                            }else{ 
+                                                echo nl2br($this->dataInfo[DbTable_Product::COL_PRODUCT_DESCRIPTION]); 
+                                            } ?>  
+                                        </div>
+                                        <div id="googlemaps" class="google-map mt-md" style="width: 50%;float: right;"></div>
+                                                                                  
 
                                         <?php echo $this->formHidden(
                                             'title',

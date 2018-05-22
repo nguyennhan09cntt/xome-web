@@ -17,7 +17,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
 
     public function indexAction()
     {
-
+        $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
         $categoryIdentify = $this->getParam('categoryIdentify');
         $category = null;
         $categoryData = null;
@@ -29,16 +29,20 @@ class ProductController extends Application_Controller_FrontEnd_Default
             if ($category[DbTable_Product_Category::COL_PRODUCT_CATEGORY_ID] == 1) {
 
                 $metaTitle = 'Nhà cho thuê | Xome.vn';
+                $uri = str_replace("/nha-cho-thue/","/thue-tro/",$uri);
             }
             if ($category[DbTable_Product_Category::COL_PRODUCT_CATEGORY_ID] == 2) {
 
-                $metaTitle = 'Phòng cho thuê | Xome.vn';
+                $metaTitle = 'Phòng cho thuê | Xome.vn';                
+                $uri = str_replace("/phong-cho-thue/","/thue-tro/",$uri);
             }
             if ($category[DbTable_Product_Category::COL_PRODUCT_CATEGORY_ID] == 3) {
 
                 $metaTitle = 'Tìm người ở ghép | Xome.vn';
+                $uri = str_replace("/tim-nguoi-o-ghe/","/thue-tro/",$uri);
             }
         }
+        $siteContent = Model_SiteContent::getInstance()->getByIdentify($uri);
 
 
         $page = $this->getParam('page', 1);
@@ -85,7 +89,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
             $this->getTranslateValue('common_keywords'),
             $this->getTranslateValue('common_description')
         );
-
+        $this->view->assign('siteContent', $siteContent);
         $this->view->assign('productData', $productData);
         $this->view->assign('productCategoryData', $categoryData);
         $this->view->assign('productCategory', $category);
@@ -279,7 +283,10 @@ class ProductController extends Application_Controller_FrontEnd_Default
         $district = $this->getRequest()->getParam('district');
         $object = $this->getRequest()->getParam('object');
 
-
+        if (!$name ){
+            #http://xome.vn/dang-tin-cho-thue.html
+            $this->gotoUrl('/dang-tin-cho-thue.html');
+        }
         $elementName = 'file_image';
         $image = $this->getRequest()->getParam('image');
         $imageArr = null;
@@ -287,6 +294,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
 
             $imageArr = $this->uploadMultiImage('product-image', $elementName, true);
         }
+        
         $descriptionNoTag = strip_tags($description);
         if (strlen($descriptionNoTag) > 100 ){
 
@@ -317,8 +325,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
                 );
             }
         }
-        $id = Model_Product::getInstance()->insert($name, $referCode, $categoryId, $originalPrice, $paidPrice, $image, $description, $component, $note, $shortDescription, $promotionPrice, $address, $area, $own, $phone, $object, $district, $customerId, 0, 0, 1, $productOwnId, $cookie);
-        echo $id;
+        $id = Model_Product::getInstance()->insert($name, $referCode, $categoryId, $originalPrice, $paidPrice, $image, $description, $component, $note, $shortDescription, $promotionPrice, $address, $area, $own, $phone, $object, $district, $customerId, 0, 0, 1, $productOwnId, $cookie);        
         if (intval($id)) {
             if ($facilityArrId) {
                 foreach ($facilityArrId as $facilityId) {
@@ -354,6 +361,9 @@ class ProductController extends Application_Controller_FrontEnd_Default
 
     public function provinceAction()
     {
+        $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();     
+        $siteContent = Model_SiteContent::getInstance()->getByIdentify($uri);
+
         $districtIdentify = $this->getRequest()->getParam('districtIdentify');
         $page = $this->getParam('page', 1);
 
@@ -366,12 +376,21 @@ class ProductController extends Application_Controller_FrontEnd_Default
         $metaContent = 'Danh sách phòng trọ, nhà trọ cho thuê tại thành phố Hồ Chí Minh';
         if ($district) {
             $districtId = $district[DbTable_District::COL_DISTRICT_ID];
-            $metaTitle = sprintf(
-                'Trang %d | Phòng trọ - Nhà trọ tại %s %s tp Hồ Chí Minh',
+            if ($page > 1) {
+                $metaTitle = sprintf(
+                'Trang %d | Phòng trọ - Nhà trọ tại %s %s, HCM',
                 $page,
                 $district[DbTable_District::COL_DISTRICT_TYPE],
                 $district[DbTable_District::COL_DISTRICT_NAME]
-            );
+                );
+            }else{
+                $metaTitle = sprintf(
+                'Phòng trọ - Nhà trọ tại %s %s, Hồ Chí Minh',                
+                $district[DbTable_District::COL_DISTRICT_TYPE],
+                $district[DbTable_District::COL_DISTRICT_NAME]
+                );    
+            }
+            
             $metaContent = sprintf(
                 'Danh sách phòng trọ, nhà trọ cho thuê tại %s %s thành phố Hồ Chí Minh',
                 $district[DbTable_District::COL_DISTRICT_TYPE],
@@ -388,6 +407,7 @@ class ProductController extends Application_Controller_FrontEnd_Default
         Application_Function_Pagination_Default::getInstance()->initialize($totalPage, $page);
         $this->view->assign('pagination', Application_Function_Pagination_Default::getInstance()->show());
         $this->view->assign('productData', $productData);
+        $this->view->assign('siteContent', $siteContent);
         $this->setMetaData(
             $metaTitle,
             $this->getTranslateValue('common_keywords'),

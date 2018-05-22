@@ -39,7 +39,7 @@ class Cli_MigrationController extends Application_Controller_Cli
 
         $migration = $this->_runMigration();
         $this->_runRoutine();
-        if ($config->env->name != 'live') {
+        if ($config->env->name == 'live') {
             $this->_cleanCache();
             if ($migration || $generate==1) {
                 $pathDbTable = APPLICATION_PATH . '/libs/DbTable';

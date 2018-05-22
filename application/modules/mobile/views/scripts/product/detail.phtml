@@ -144,11 +144,12 @@
                                                                     <span class=""
                                                                           title="Số điện thoại">Phone:
                                                                     </span>
-                                                                     <span itemprop="priceRange">
+                                                                     <span itemprop="priceRange" style="  <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'display: none;' : '' ?>">
                                                                             <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?></span>
                                 <?php if ($this->productImport($this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK])) { ?>
                                     - <span><a
-                                            href="<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK]; ?>">
+                                            href="<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_REFER_LINK]; ?>" style="color: blue;font-weight: 700;" >
+                                            <span class="fa fa-link"></span>
                                             Link tin</a></span>
                                 <?php } ?>
                                 </span>
@@ -159,12 +160,12 @@
 
 
                     <section id="description" class="mt-sm">
-                        <div class="panel panel-default dd">
+                        <div class="panel panel-default dd" style="  <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'display: none;' : '' ?>">
                             <a href="tel://<?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?>"
-                               class="btn btn-zita-focus btn-block btn-lg align-left"
+                               class="btn btn-zita-focus btn-block btn-lg align-center green" style="font-weight: 700;font-size: 17;"
                                onclick=""><span class="fa fa-phone minmaxpriceicon"></span> Liên
-                                hệ ngay: <span
-                                    class="contact-tel"><?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_PHONE]; ?></span></a>
+                                hệ ngay<span
+                                    class="contact-tel"></span></a>
                         </div>
                         <div class="panel panel-default dd">
                             <a href="#content-1"
@@ -174,7 +175,7 @@
                                 tin mô tả<span
                                     class="fa fa-chevron-down pull-right"></span></a>
 
-                            <div id="content-1" class="panel-collapse collapse in">
+                            <div id="content-1" class="panel-collapse collapse in" style="  <?php echo $this->dataInfo[DbTable_Product::COL_FK_CONFIG_STATUS] != 1 ? 'display: none;' : '' ?>">
                                 <div class="panel-body property-content">
                                     <?php echo $this->dataInfo[DbTable_Product::COL_PRODUCT_DESCRIPTION]; ?>
                                 </div>

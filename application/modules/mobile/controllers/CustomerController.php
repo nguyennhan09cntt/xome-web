@@ -368,5 +368,75 @@ class Mobile_CustomerController extends Application_Controller_FrontEnd_Default
         $this->noRender();
     }
 
+    public function callbackAction()
+    {
+        $accessToken = $this->getRequest()->getParam('accessToken');
+        $fb = new Facebook([
+            'app_id' => '1428898624081256', // Replace {app-id} with your app id
+            'app_secret' => '4b4867ee98462e2de15e65f51ee57c09',
+            'default_graph_version' => 'v2.11',
+        ]);
+       
 
+        if (isset($accessToken)) {
+            // Logged in!
+            $_SESSION['facebook_access_token'] = (string)$accessToken;
+            $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
+            try {
+                $response = $fb->get('/me');
+                $userNode = $response->getGraphUser();
+                var_dump($userNode);die();
+            } catch (FacebookResponseException $e) {
+                // When Graph returns an error
+                echo 'Graph returned an error: ' . $e->getMessage();
+                exit;
+            } catch (FacebookSDKException $e) {
+                // When validation fails or other local issues
+                echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                exit;
+            }
+            // Now you can redirect to another page and use the
+            // access token from $_SESSION['facebook_access_token']
+
+            $facebookId = $userNode->getId();
+            $email = $userNode->getEmail();
+            $firstName = $userNode->getFirstName();
+            $lastName = $userNode->getLastName();
+            $birthDay = $userNode->getBirthday();
+            $name = $userNode->getName();
+            $gender = $userNode->getGender();
+            $link = $userNode->getLink();
+            $phone = '';
+            $date = $birthDay ? $birthDay->format('Y-m-d H:i:s') : '';
+            $user = Model_Customer::getInstance()->searchByFacebookId($facebookId);
+            if (!$user) {
+                $id = Model_Customer::getInstance()->insertFacebook($facebookId, $email, $firstName, $lastName, $name, $gender, $date, $phone, $link);
+                $user = Model_Customer::getInstance()->getById($id);
+                Model_ProductOwner::getInstance()->insert($name, $phone, $email, $facebookId, 0);
+            }
+
+            $this->saveSessionCustomerInfo($user);
+            $time = time();
+            $session = md5($time . $email);
+            $this->setCookie(
+                Application_Constant_Global::COOKIE_CUSTOMER,
+                $session
+            );
+            Model_Customer::getInstance()->updateSessionById($user->{DbTable_Customer::COL_CUSTOMER_ID}, $session);
+
+            $cookieValue = $this->getCookie(Application_Constant_Global::COOKIE_CUSTOMER_ANONYMOUS);
+            if ($cookieValue) {
+                Model_Product::getInstance()->updateCustomer($user->{DbTable_Customer::COL_CUSTOMER_ID}, $cookieValue);
+                $this->setCookie(
+                    Application_Constant_Global::COOKIE_CUSTOMER_ANONYMOUS,
+                    null
+                );
+                $this->cleanUpCookie(Application_Constant_Global::COOKIE_CUSTOMER_ANONYMOUS);
+            }
+
+            $this->gotoUrl('/tai-khoan/danh-sach-tin-nha-tro.html');
+
+        }
+        $this->noRender();
+    }
 }

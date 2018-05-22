@@ -75,6 +75,7 @@ class Model_Product extends Application_Singleton
         $flagUpload = intval($flagUpload);
         $productOwnId = $productOwnId? intval($productOwnId) : null;
         $cookie = $cookie ? trim($cookie): null;
+        $object  = $object ? intval($object) : 0;
         $result = null;
         try {
             $params = array(

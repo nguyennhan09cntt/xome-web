@@ -61,16 +61,20 @@
                                         </li>
                                         <li class="dropdown <?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_LEASE ? 'active' : '';?>">
                                             <a class="dropdown-toggle" href="#">
-                                                Cho thuê phòng trọ
-                                            </a>
+                                                Nhà cho thuê                                   </a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="/nha-cho-thue.html">Nhà trọ</a></li>
+                                                <li><a href="/nha-cho-thue.html">Nhà nguyên căn</a></li>
                                                 <li><a href="/phong-cho-thue.html">Phòng trọ</a></li>
-                                                <li><a href="/tim-nguoi-o-ghep.html">Tìm người ở ghép</a></li>
+                                                <!-- <li><a href="/tim-nguoi-o-ghep.html">Tìm người ở ghép</a></li> -->
                                             </ul>
 
                                         </li>
-                                        <li class="dropdown <?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_RENT ? 'active' : '';?>">
+                                        <li class="<?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_MOTEL_OWNER_INFO ? 'active' : '';?>">
+                                            <a class="" href="/tim-nguoi-o-ghep.html">
+                                                Tìm người ở ghép
+                                            </a>
+                                        </li>
+                                        <!-- <li class="dropdown <?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_RENT ? 'active' : '';?>">
                                             <a class="dropdown-toggle" href="#">
                                                 Tìm phòng trọ
                                             </a>
@@ -78,13 +82,13 @@
                                               <li><a href="/tin-tim-phong.html">Tin tìm phòng</a></li>
                                                 <li><a href="/dang-tin-tim-phong.html">Đăng tin tìm phòng</a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
 
-                                        <li class="<?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_MOTEL_OWNER_INFO ? 'active' : '';?>">
+                                        <!-- <li class="<?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_MOTEL_OWNER_INFO ? 'active' : '';?>">
                                             <a class="" href="/thong-tin-nguoi-dang.html">
                                                 Thông tin người đăng
                                             </a>
-                                        </li>
+                                        </li> -->
                                        <!-- <li class="dropdown <?php /*echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_BLOG ? 'active' : '';*/?>">
                                             <a class="dropdown-toggle" href="#">
                                                 Thủ thuật & Kinh nghiệm
@@ -95,10 +99,10 @@
                                             </ul>
 
                                         </li>-->
-										<li style="color: white;"><a class="btn" href="/tim-kiem-ban-do?<?php echo $this->queryPagination;?>"><i class="fa fa-map-marker"></i>&nbsp;Tìm kiếm</a></li>
+										<li style="color: white;"><a class="btn" href="/tim-kiem?<?php echo $this->queryPagination;?>"><i class="fa fa-map-marker"></i>&nbsp;Tìm kiếm</a></li>
                                         <li class="<?php echo  $this->menuHeader ==  Application_Constant_Identify::MENU_HEADER_LEASE_ADD ? 'active' : '';?>">
                                             <a class="" href="/dang-tin-cho-thue.html">
-                                                Đăng tin
+                                                Đăng tin cho thuê
                                             </a>
                                         </li>
                                     </ul>

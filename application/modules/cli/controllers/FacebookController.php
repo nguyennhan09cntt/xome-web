@@ -96,8 +96,9 @@ class Cli_FacebookController extends Application_Controller_Cli
 
     }
 
-
-    //                       /usr/bin/php /usr/share/nginx/phong_tro/public/cli.php -m cli -c facebook -a import
+    /*
+     * /usr/bin/php /usr/share/nginx/phong_tro/public/cli.php -m cli -c facebook -a import
+     */
     public function importAction()
     {
         $data = array();
@@ -139,12 +140,27 @@ class Cli_FacebookController extends Application_Controller_Cli
 
                 foreach ($data as $index => $item) {
                     $ownerId = null;
-                    $owner = Cli_Model_ProductOwner::getInstance()->getByFacebookId($item[15]);
+                    $owner = null;
+                    $item[15] = null;
+                    $item[14] = null;
+
+                    if ($item[15]){
+                        $owner = Cli_Model_ProductOwner::getInstance()->getByFacebookId($item[15]);    
+                    }
+                    
                     $owner = $owner ? $owner->toArray() : null;
                     if ($owner) {
                         $ownerId = $owner[DbTable_Product_Own::COL_PRODUCT_OWN_ID];
                     } else {
-                        $ownerId = Cli_Model_ProductOwner::getInstance()->insert($item[14], null, null, $item[15], 0);
+                        $name = $item[3];
+                        $phone = $item[4];
+                        
+                        if($phone){
+                            $phone = $phone[0]  == 0 ? $phone :  '0'.$phone;
+                        }
+                        
+                        $facebook_id =  $item[15];
+                        $ownerId = Cli_Model_ProductOwner::getInstance()->insert($name, $phone, null, $facebook_id, 0);
                     }
 
                     $ownerId = intval($ownerId) > 0 ? intval($ownerId) : null;
@@ -158,6 +174,8 @@ class Cli_FacebookController extends Application_Controller_Cli
                         $imageThumb = $this->downloadImage($item[10], 'product', $identify);
                     }
                     $item[1] = $this->formatNumber($item[1]);
+                    $item[4] = $this->formatNumber($item[4]);
+                    $item[4] = $item[4][0] == 0 ? $item[4] : '0'.$item[4];
                     $productId = Cli_Model_Product::getInstance()->insert($item[0], $imageThumb, $item[9], $item[8], 2, 1, $item[10], $item[16], $item[4], $item[2], $item[1], $identify, $item[5], $districtId, $item[3], $ownerId, $item[15], $item[14]);
                     if (intval($productId)) {
                         for ($i = 10; $i < 14; $i++) {

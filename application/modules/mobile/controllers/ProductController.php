@@ -6,6 +6,8 @@
  * Date: 3/20/2016
  * Time: 1:11 PM
  */
+#use RestRequest;
+require_once 'RestRequest.php';
 class Mobile_ProductController extends Application_Controller_FrontEnd_Default
 {
 
@@ -253,6 +255,11 @@ class Mobile_ProductController extends Application_Controller_FrontEnd_Default
         $productData = $productData ? $productData->toArray() : null;
         $this->view->assign('productSearchData', $productData);
 
+        #$productSearchData = $this->restElasticsSearch('');
+        #echo "<prev>";
+        #var_dump($productSearchData);
+        #echo "</prev>";
+
         //$total = count($productData);
         $totalPage = ($total - 1) / $limit + 1;
         #Query String
@@ -378,5 +385,19 @@ class Mobile_ProductController extends Application_Controller_FrontEnd_Default
 
     }
 
+    private function restElasticsSearch($keyword) 
+    {
+        $curl = curl_init();
+        $url = '159.65.133.167:9200/product/_search?pretty';
+        #$requestBody = '{ "query": { "match_all": {} } }';
+        $requestBody = array('query' => array('match_all' =>  new ArrayObject()));
+        $reqElastics = new RestRequest($url, 'POST', $requestBody);
+        #var_dump($reqElastics->requestBody);
+        $reqElastics->execute();    
+
+        var_dump($reqElastics->getResponseInfo());
+        return $reqElastics->getResponseBody();
+    }
 
 }
+

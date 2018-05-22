@@ -35,12 +35,36 @@
                 <form class="form-horizontal" role="form" id="validate" enctype="multipart/form-data" method="post" target="ifrmEdit" action="<?php echo $this->adminUrl('site-content/submit-edit'); ?>">
                     <div class="form-body">
                         <div class="form-group">
-                            <!--<label class="col-md-2 control-label">Tên Page<span class="required" aria-required="true"> * </span>:</label>-->
+                            <label class="col-md-2 control-label">Tên Page<span class="required" aria-required="true"> * </span>:</label>
                             <div class="col-md-6">
                                 <?php echo $this->formText(
                                     'name',
                                     $this->dataInfo ? $this->dataInfo->{DbTable_Site_Content::COL_SITE_CONTENT_NAME} : null,
                                     array('class' => 'form-control validate[required]')
+                                ); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Uri<span class="required" aria-required="true"> * </span>:</label>
+                            <div class="col-md-6">
+                                <?php echo $this->formText(
+                                    'identify',
+                                    $this->dataInfo ? $this->dataInfo->{DbTable_Site_Content::COL_SITE_CONTENT_IDENTIFY} : null,
+                                    $this->dataInfo ? array(
+                                        'class' => 'form-control validate[required]',
+                                        'readonly' =>  'true'
+                                    ) : array('class' => 'form-control validate[required]')
+                                ); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Description<span class="required" aria-required="true"> * </span>:</label>
+                            <div class="col-md-6">
+                                <?php echo $this->formTextarea(
+                                    'description',
+                                    $this->dataInfo ? $this->dataInfo->{DbTable_Site_Content::COL_SITE_CONTENT_DESCRIPTION} : null,
+                                    array('class' => 'form-control', 'rows' => 5)
                                 ); ?>
                             </div>
                         </div>
@@ -60,11 +84,7 @@
                             <?php echo $this->formHidden(
                                 'id',
                                 $this->dataInfo ? $this->dataInfo->{DbTable_Site_Content::COL_SITE_CONTENT_ID} : null
-                            ); ?>
-                            <?php echo $this->formHidden(
-                                'identify',
-                                $this->dataInfo ? $this->dataInfo->{DbTable_Site_Content::COL_SITE_CONTENT_IDENTIFY} : null
-                            ); ?>
+                            ); ?>                            
                             <button type="submit" class="btn green">Cập nhật</button>
                         </div>
                 </form>

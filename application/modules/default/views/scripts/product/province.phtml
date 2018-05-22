@@ -19,7 +19,7 @@
                 <!-- view-product-list-->
                 <div id="view-product-list" class="view-product-list">
                     <h2 class="page-heading">
-                        <span class="page-heading-title">Tin nhà trọ <?php echo $this->districtInfo[DbTable_District::COL_DISTRICT_TYPE] . ' '. $this->districtInfo[DbTable_District::COL_DISTRICT_NAME]?> mới nhất</span>
+                        <span class="page-heading-title"><?php echo $this->metaTitle;?></span>
                     </h2>
 
                     <!--<div class="sortPagiBar" style="position: absolute;right: 0;top: 0;margin-top: 0px;">
@@ -92,5 +92,14 @@
             </div>
 
         </div>
+
+        <div class="row">
+            <div id="form-description">
+            <?php if($this->siteContent){
+                echo $this->siteContent[DbTable_Site_Content::COL_SITE_CONTENT_CONTENT];
+             }?>
+            </div>
+            
+        </div>    
     </div>
 </div>

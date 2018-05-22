@@ -38,17 +38,18 @@ class Admin_Model_ProductImage extends Application_Singleton
         $name = trim($name);
         $note = trim($note);
         $product = intval($product);
+        #$import = boolval($import);
         $result = null;
         try {
             $params = array(
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_NAME => $name,
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_NOTE => $note,
                 DbTable_Product_Image::COL_FK_PRODUCT => $product,
-                DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT => $import,
+                #DbTable_Product_Image::COL_PRODUCT_IMAGE_IMPORT => false,
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_CROP => true,
                 DbTable_Product_Image::COL_PRODUCT_IMAGE_CREATED_AT => $this->_dao->mysqlSysDate()
             );
-            $this->_dao->insert($params);
+           $this->_dao->insert($params);
         } catch (Exception $e) {
             $result = $e->getMessage();
         }

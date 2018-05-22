@@ -38,7 +38,7 @@ class Admin_ProductImageController extends Application_Controller_BackEnd_Admin 
 		if ($id) {
 			$message = Admin_Model_ProductImage::getInstance ()->update ($id, $image, $note, $product);
 		} else {
-			$message = Admin_Model_ProductImage::getInstance ()->insert ($image, $note, $product);
+			$message = Admin_Model_ProductImage::getInstance()->insert ($image, $note, $product, false);
 		}
 		
 		if ($message) {

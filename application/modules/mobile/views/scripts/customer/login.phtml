@@ -20,7 +20,12 @@
                             <div id="collapseOne" class="panel-collapse">
                                 <div class="panel-body">
 
-                                    <a href="<?php echo $this->loginUrl;?>" class="btn blue btn-block"><i class="fa fa-facebook-square" style="font-size:20px;margin: 4px;"></i>Đăng nhập bằng facebook</a>
+                                    <div style="text-align: center;">
+                                        <fb:login-button 
+                                          scope="public_profile,email"
+                                          onlogin="checkLoginState();">
+                                        </fb:login-button>
+                                    </div>
 
                                     <p class="text-center mt-sm mb-sm">Hoặc</p>
 
@@ -81,3 +86,33 @@
     </div>
 
 </div>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1428898624081256',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+      
+    FB.AppEvents.logPageView();   
+   
+    
+  };
+  function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        window.location.href  ='http://m.xome.vn/customer/callback?accessToken=' +response['authResponse']['accessToken']
+        console.log(response);
+      });
+    }
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>

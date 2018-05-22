@@ -29,11 +29,12 @@ class Admin_SiteContentController extends Application_Controller_BackEnd_Admin
 
         $identify = $this->getRequest()->getParam('identify');
         $content= $this->getRequest()->getParam('content');
+        $description= $this->getRequest()->getParam('description');
         $message = null;
         if ($id) {
-            $message = Admin_Model_SiteContent::getInstance()->update($id, $name, $identify, $content);
+            $message = Admin_Model_SiteContent::getInstance()->update($id, $name, $identify, $content, $description);
         } else {
-            $message = Admin_Model_SiteContent::getInstance()->insert($name, $content);
+            $message = Admin_Model_SiteContent::getInstance()->insert($name, $identify, $content, $description);
         }
 
         if ($message) {
