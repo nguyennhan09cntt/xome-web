@@ -1,6 +1,6 @@
 $(function(){
     Custom.initManualUpdate('site-content');
-    $('#btn-new-add').click(function(){
+    $('#btn_add_new').click(function(){
         Metronic.redirect('site-content/edit/')
     });
 });

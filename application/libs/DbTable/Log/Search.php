@@ -1,6 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
+<<<<<<< HEAD
 * Last modified : 2018-05-22 19:23:02
 * Class DbTable_Log_Search
 */

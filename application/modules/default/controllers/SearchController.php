@@ -92,7 +92,7 @@ class SearchController extends Application_Controller_FrontEnd_Default
         }
         $metaTitle = 'Bản đồ tìm kiếm | Nhà trọ - Phòng trọ tại Hồ Chí Minh';
         $metaContent = 'Danh sách phòng trọ, nhà trọ cho thuê tại thành phố Hồ Chí Minh';
-        Model_LogSearch::getInstance()->insert($query);
+        Model_LogSearch::getInstance()->insert($query, 3);
         $data = Model_Product::getInstance()->searchQuery($page, $limit, $query, $category, $facility, $priceBegin, $priceEnd, $province, $district, $object, $areaBegin, $areaEnd, true, $lat, $lng);
         $productData = $data ? $data[Application_Constant_Global::KEY_DATA] : array();
         $total = $data ? $data[Application_Constant_Global::KEY_TOTAL] : 0;
