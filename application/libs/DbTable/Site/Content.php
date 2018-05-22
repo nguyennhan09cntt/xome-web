@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-07-01 09:24:02
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Site_Content
 */
 
@@ -44,6 +44,14 @@ class DbTable_Site_Content extends Application_Db_DbTable
     * @extra <>
     */
     const COL_SITE_CONTENT_IDENTIFY = 'site_content_identify';
+    
+    /**
+    * @type <varchar(512)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_SITE_CONTENT_DESCRIPTION = 'site_content_description';
     
     /**
     * @type <tinyint(4)>

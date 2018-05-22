@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-07-01 09:24:02
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Site_Slide
 */
 

@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-07-01 09:24:02
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Product_Own
 */
 
@@ -68,6 +68,22 @@ class DbTable_Product_Own extends Application_Db_DbTable
     * @extra <>
     */
     const COL_PRODUCT_OWN_CREATED_AT = 'product_own_created_at';
+    
+    /**
+    * @type <tinyint(4)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_OWN_STATUS = 'product_own_status';
+    
+    /**
+    * @type <varchar(45)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_OWN_NOTE = 'product_own_note';
     
     /**
     * @var DbTable_Product_Own

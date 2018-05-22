@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-07-01 09:24:02
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Product
 */
 
@@ -62,20 +62,20 @@ class DbTable_Product extends Application_Db_DbTable
     const COL_PRODUCT_THUMB_NAIL = 'product_thumb_nail';
     
     /**
-    * @type <tinyint(4)>
-    * @null <YES>
-    * @default <>
-    * @extra <>
-    */
-    const COL_PRODUCT_FLAG_UPLOAD_IMAGE = 'product_flag_upload_image';
-    
-    /**
     * @type <int(10) unsigned>
     * @null <YES>
     * @default <>
     * @extra <>
     */
     const COL_PRODUCT_ORIGINAL_PRICE = 'product_original_price';
+    
+    /**
+    * @type <tinyint(4)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_FLAG_UPLOAD_IMAGE = 'product_flag_upload_image';
     
     /**
     * @type <int(10) unsigned>
@@ -120,7 +120,7 @@ class DbTable_Product extends Application_Db_DbTable
     /**
     * @type <int(11)>
     * @null <YES>
-    * @default <>
+    * @default <0>
     * @extra <>
     */
     const COL_PRODUCT_OBJECT = 'product_object';
@@ -238,20 +238,20 @@ class DbTable_Product extends Application_Db_DbTable
     const COL_PRODUCT_OWN = 'product_own';
     
     /**
-    * @type <varchar(256)>
-    * @null <YES>
-    * @default <>
-    * @extra <>
-    */
-    const COL_PRODUCT_REFER_LINK = 'product_refer_link';
-    
-    /**
     * @type <int(10) unsigned>
     * @null <YES>
     * @default <>
     * @extra <>
     */
     const COL_FK_PRODUCT_OWNER = 'fk_product_owner';
+    
+    /**
+    * @type <varchar(256)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_REFER_LINK = 'product_refer_link';
     
     /**
     * @type <varchar(32)>
@@ -272,15 +272,7 @@ class DbTable_Product extends Application_Db_DbTable
     /**
     * @type <int(11)>
     * @null <YES>
-    * @default <>
-    * @extra <>
-    */
-    const COL_PRODUCT_PROMOTION_PRICE = 'product_promotion_price';
-    
-    /**
-    * @type <int(11)>
-    * @null <YES>
-    * @default <>
+    * @default <0>
     * @extra <>
     */
     const COL_PRODUCT_PAGEVIEW = 'product_pageview';
@@ -292,14 +284,6 @@ class DbTable_Product extends Application_Db_DbTable
     * @extra <>
     */
     const COL_CUSTOMER_COOKIE = 'customer_cookie';
-    
-    /**
-    * @type <tinyint(4)>
-    * @null <YES>
-    * @default <>
-    * @extra <>
-    */
-    const COL_PRODUCT_FLAG_CROP = 'product_flag_crop';
     
     /**
     * @type <datetime>
@@ -316,6 +300,22 @@ class DbTable_Product extends Application_Db_DbTable
     * @extra <on update CURRENT_TIMESTAMP>
     */
     const COL_PRODUCT_UPDATED_AT = 'product_updated_at';
+    
+    /**
+    * @type <tinyint(4)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_FLAG_CROP = 'product_flag_crop';
+    
+    /**
+    * @type <int(11)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PRODUCT_PROMOTION_PRICE = 'product_promotion_price';
     
     /**
     * @var DbTable_Product

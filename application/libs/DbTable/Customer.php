@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-07-01 09:24:01
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Customer
 */
 
@@ -39,7 +39,7 @@ class DbTable_Customer extends Application_Db_DbTable
     
     /**
     * @type <varchar(128)>
-    * @null <NO>
+    * @null <YES>
     * @default <>
     * @extra <>
     */
@@ -172,6 +172,14 @@ class DbTable_Customer extends Application_Db_DbTable
     * @extra <>
     */
     const COL_CUSTOMER_SESSION = 'customer_session';
+    
+    /**
+    * @type <varchar(256)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_CUSTOMER_ACCESS_TOKEN = 'customer_access_token';
     
     /**
     * @type <datetime>

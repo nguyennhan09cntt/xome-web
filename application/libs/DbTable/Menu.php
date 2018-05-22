@@ -2,59 +2,75 @@
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
 * Last modified : 2018-05-22 19:23:02
-* Class DbTable_Admin_Notification
+* Class DbTable_Menu
 */
 
-class DbTable_Admin_Notification extends Application_Db_DbTable
+class DbTable_Menu extends Application_Db_DbTable
 {
     /**
     * @type <string>
     */
-    const _tableName = 'admin_notification';
+    const _tableName = 'menu';
 
     
     /**
-    * @type <int(11) unsigned>
+    * @type <int(11)>
     * @null <NO>
     * @default <>
     * @extra <auto_increment>
     */
-    const COL_ADMIN_NOTIFICATION_ID = 'admin_notification_id';
+    const COL_MENU_ID = 'menu_id';
     
     /**
-    * @type <int(11) unsigned>
-    * @null <NO>
-    * @default <>
-    * @extra <>
-    */
-    const COL_FK_TICKET_NOTE = 'fk_ticket_note';
-    
-    /**
-    * @type <int(11) unsigned>
-    * @null <NO>
-    * @default <>
-    * @extra <>
-    */
-    const COL_FK_ADMIN = 'fk_admin';
-    
-    /**
-    * @type <tinyint(1)>
+    * @type <varchar(45)>
     * @null <YES>
-    * @default <5>
+    * @default <>
     * @extra <>
     */
-    const COL_ADMIN_NOTIFICATION_ACTIVE = 'admin_notification_active';
+    const COL_NAME = 'name';
+    
+    /**
+    * @type <varchar(128)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_LINK = 'link';
+    
+    /**
+    * @type <int(11)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_PARENT_ID = 'parent_id';
+    
+    /**
+    * @type <tinyint(4)>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_ACTIVE = 'active';
+    
+    /**
+    * @type <datetime>
+    * @null <YES>
+    * @default <>
+    * @extra <>
+    */
+    const COL_CREATED_AT = 'created_at';
     
     /**
     * @type <timestamp>
-    * @null <NO>
+    * @null <YES>
     * @default <CURRENT_TIMESTAMP>
     * @extra <>
     */
-    const COL_ADMIN_NOTIFICATION_CREATED_AT = 'admin_notification_created_at';
+    const COL_UPDATED_AT = 'updated_at';
     
     /**
-    * @var DbTable_Admin_Notification
+    * @var DbTable_Menu
     */
     public static $_instance;
 
@@ -66,11 +82,11 @@ class DbTable_Admin_Notification extends Application_Db_DbTable
     }
 
     /**
-    * @return DbTable_Admin_Notification
+    * @return DbTable_Menu
     */
     public static function getInstance(){
         if(is_null(self::$_instance)){
-            self::$_instance = new DbTable_Admin_Notification();
+            self::$_instance = new DbTable_Menu();
         }
         return self::$_instance;
     }

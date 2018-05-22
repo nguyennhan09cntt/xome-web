@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2018-03-07 22:26:04
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Log_Search
 */
 
@@ -28,6 +28,14 @@ class DbTable_Log_Search extends Application_Db_DbTable
     * @extra <>
     */
     const COL_KEY_CONTENT = 'key_content';
+    
+    /**
+    * @type <tinyint(4)>
+    * @null <YES>
+    * @default <1>
+    * @extra <>
+    */
+    const COL_LOG_MODULE = 'log_module';
     
     /**
     * @type <varchar(45)>

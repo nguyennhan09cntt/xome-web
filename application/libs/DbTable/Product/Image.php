@@ -1,7 +1,7 @@
 <?php
 /**
 * This class is generated automatically by schema_update. !!! Do not touch or modify
-* Last modified : 2017-07-01 09:24:02
+* Last modified : 2018-05-22 19:23:02
 * Class DbTable_Product_Image
 */
 
@@ -22,7 +22,7 @@ class DbTable_Product_Image extends Application_Db_DbTable
     const COL_PRODUCT_IMAGE_ID = 'product_image_id';
     
     /**
-    * @type <varchar(128)>
+    * @type <varchar(256)>
     * @null <NO>
     * @default <>
     * @extra <>
@@ -38,7 +38,7 @@ class DbTable_Product_Image extends Application_Db_DbTable
     const COL_PRODUCT_IMAGE_NOTE = 'product_image_note';
     
     /**
-    * @type <tinyint(4)>
+    * @type <tinyint(1)>
     * @null <YES>
     * @default <0>
     * @extra <>
